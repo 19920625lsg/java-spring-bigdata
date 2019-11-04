@@ -1,0 +1,85 @@
+# 数据库表设计 https://img.mukewang.com/szimg/5cc7b5fc0001976619201080.jpg
+
+## 1.创建商品表 product_info
+drop table if exists product_info;
+create table product_info
+(
+  # 商品id,这里不用自增整型，因为整型上线较低，在大型项目中很容易溢出
+  product_id          varchar(32)   not null,
+  product_name        varchar(64)   not null comment '商品名称',
+  product_price       decimal(8, 2) not null comment '商品单价',
+  product_stock       int           not null comment '库存',
+  product_description varchar(64)   default null comment '商品描述',
+  product_icon        varchar(512)  default null comment '商品图片',
+  product_status      tinyint(3)    default 0 comment '商品状态，0正常1下架',
+  category_type       int           not null comment '商品类目编号',
+  # 默认时间为当前时间
+  create_time         timestamp     not null default current_timestamp comment '创建时间',
+  # update_time：数据库其他字段更新时，这个字段自动更新为当前时间，在这里实现要比在SpringBoot里实现简单地多
+  update_time         timestamp     not null default current_timestamp on update current_timestamp comment '更新时间',
+  # 设置表的主键，记得一定要加()
+  primary key (product_id)
+) comment '商品表';
+
+## 2.创建商品类目表 product_category
+drop table if exists product_category;
+create table product_category
+(
+  # 类目表的主键，类目较少，所以int型自增主键就够用了
+  category_id   int         not null auto_increment comment '类目id',
+  category_name varchar(64) not null comment '类目名字',
+  # 为何不用category_id作为类目编号？因为category_id自增，不确定性太大
+  category_type int         not null default 0 comment '类目标号',
+  # 默认时间为当前时间
+  create_time   timestamp   not null default current_timestamp comment '创建时间',
+  # update_time：数据库其他字段更新时，这个字段自动更新为当前时间，在这里实现要比在SpringBoot里实现简单地多
+  update_time   timestamp   not null default current_timestamp on update current_timestamp comment '更新时间',
+  # 设置表的主键，记得一定要加()
+  primary key (category_id),
+  # category_type是唯一的，设置为约束索引，可以提高查询效率
+  unique key uqe_category_type (category_type)
+) comment '商品类目表';
+
+## 3.创建订单主表 order_master
+drop table if exists order_master;
+create table order_master
+(
+  order_id      varchar(32)   not null comment '订单主表主键',
+  buyer_name    varchar(32)   not null comment '买家名字',
+  buyer_phone   varchar(32)   not null comment '买家电话',
+  buyer_address varchar(128)  not null comment '买家地址',
+  buyer_openid  varchar(63)   not null comment '买家微信openid',
+  order_amount  decimal(8, 2) not null comment '订单总金额',
+  order_status  tinyint(3)    not null default 0 comment '订单状态，3位,默认为0表示新订单',
+  pay_status    tinyint(3)    not null default 0 comment '支付状态, 默认0表示未支付',
+  # 默认时间为当前时间
+  create_time   timestamp     not null default current_timestamp comment '创建时间',
+  # update_time：数据库其他字段更新时，这个字段自动更新为当前时间，在这里实现要比在SpringBoot里实现简单地多
+  update_time   timestamp     not null default current_timestamp on update current_timestamp comment '更新时间',
+  # 设置订单主键
+  primary key (order_id),
+  # 给微信的openid设置索引，查询时可以根据这个字段查找指定用户的所有订单
+  key idx_buyer_openid (buyer_openid)
+) comment '订单主表';
+
+## 4.创建订单详情表
+drop table if exists order_detail;
+create table order_detail
+(
+  # 量大所以用varchar而不是用自增的int
+  detail_id varchar(32) not null comment '订单详情的id',
+  order_id varchar(32) not null comment '对应的订单主表id',
+  product_id varchar(32) not null comment '对应的商品id',
+  product_name varchar(64) not null comment '商品名称',
+  product_price decimal(8, 2) not null comment '商品价格',
+  product_quantity int not null comment '商品数量',
+  product_icon varchar(512) comment '商品图片',
+  # 默认时间为当前时间
+  create_time   timestamp     not null default current_timestamp comment '创建时间',
+  # update_time：数据库其他字段更新时，这个字段自动更新为当前时间，在这里实现要比在SpringBoot里实现简单地多
+  update_time   timestamp     not null default current_timestamp on update current_timestamp comment '更新时间',
+  primary key (detail_id),
+  # 对主键进行索引
+  key idx_order_id (order_id)
+) comment '订单详情表';
+

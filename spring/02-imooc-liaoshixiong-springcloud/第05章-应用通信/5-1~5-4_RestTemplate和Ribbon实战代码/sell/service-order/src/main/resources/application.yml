@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service-order
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://10.102.26.76:3306/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      # 配置注册中心地址
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    # 配置在注册中心的显示，这里和Swagger结合在了一起
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+SERVICE-PRODUCT:
+  ribbon:
+    NR
