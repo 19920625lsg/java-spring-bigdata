@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-cloud?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: Huawei@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

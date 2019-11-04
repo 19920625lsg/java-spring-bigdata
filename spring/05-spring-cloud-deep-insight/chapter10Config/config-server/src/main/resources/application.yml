@@ -1,0 +1,29 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: config-server
+  # 配置文件用application.yml即可
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/lsgwr/spring-cloud-deep-insight-config-server
+          # 当访问私有仓库时需要配置用户名和密码
+          username: 1648266192@qq.com
+          password: 19921023wr
+          # 网络请求的超时时间
+          timeout: 5
+          # 默认访问的仓库分支
+          default-label: master
+
+eureka:
+  client:
+    service-url:
+      # 配置注册中心地址
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    # 配置在注册中心的显示
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}

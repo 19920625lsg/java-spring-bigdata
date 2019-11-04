@@ -1,0 +1,23 @@
+eureka:
+  client:
+    service-url:
+      # 配置注册中心地址
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    # 配置在注册中心的显示，这里和Swagger结合在了一起
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+server:
+  port: 8763
+
+spring:
+  application:
+    name: product-service
+  # 用docker run -d -p 9411:9411 openzipkin/zipkin启动起来地zipkin服务地址
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      # 采样率，默认是0.1，这里设置为1是为了方便观察
+      probability: 1

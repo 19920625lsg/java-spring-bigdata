@@ -1,0 +1,10 @@
+me:
+  name: liangshanguang
+  age: 26
+  # 调用内置函数
+  number: ${random.int}
+  uuid: ${random.uuid}
+  max: ${random.int(10)}
+  value: ${random.value}
+  # 引用前面的值
+  greeting: hi, I'm ${me.name}

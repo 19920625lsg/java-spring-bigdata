@@ -1,0 +1,13 @@
+spring:
+  # 必须在bootstrap.yml里面配置，不要在git仓库里配置
+  application:
+    name: product-service
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      # 从https://gitee.com/lsgwr/spring-cloud-deep-insight-config-server中获取test分支的product-service-dev.yml
+      profile: prod
+      # 建议用label去区分环境，默认label是master
+      label: master
