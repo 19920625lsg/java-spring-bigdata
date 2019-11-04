@@ -1,5 +1,5 @@
-# itcast-java
-> 《传智博客Java》2019版学习,第57期，视频教程见 [B站链接](https://space.bilibili.com/323739811/favlist?fid=465461111&ftype=create),源码见百度云《黑马JavaEE 57期》
+# java-spring-bigdata
+> java基础、Spring和大数据的学习
 
 下面是Java架构师的学习课程和学习路线
 
