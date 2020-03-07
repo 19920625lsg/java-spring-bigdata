@@ -7,6 +7,9 @@
     <groupId>org.example</groupId>
     <artifactId>P03MyBatis</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-
+    <modules>
+        <module>day01init</module>
+    </modules>
 </project>
