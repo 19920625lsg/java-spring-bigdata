@@ -60,5 +60,3 @@
 
 ## 如何定义自己的方法
 ![自定义Mybatis分析](../ref/mybatis_day01/截图/自定义Mybatis分析.png)
-
-## 创建MyBatis工程时的注意事项
