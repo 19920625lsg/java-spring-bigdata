@@ -14,7 +14,7 @@
             <dataSource type="POOLED">
                 <!--  配置数据库连接的4个基本信息 -->
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
                 <property name="username" value="root"/>
                 <property name="password" value="tooldev"/>
             </dataSource>
