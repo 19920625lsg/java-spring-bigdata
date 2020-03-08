@@ -12,6 +12,8 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -19,32 +21,48 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-public class MyBatisTest {
+public class MyBatisTest2 {
+
+    private InputStream in;
+    private SqlSession session;
+    private IUserDao userDao;
 
     /**
-     * 测试查询所有用户的操作
-     *
-     * @throws IOException
+     * 在测试方法执行前执行一些初始化的工作
      */
-    @Test
-    public void testFindAll() throws IOException {
+    @Before
+    public void init() throws IOException {
         // 1.读取配置文件
-        InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
+        in = Resources.getResourceAsStream("SqlMapConfig.xml");
         // 2.创建SqlSessionFactory工厂
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         SqlSessionFactory factory = builder.build(in);
         // 3.使用工厂生产SqlSession对象
-        SqlSession session = factory.openSession();
+        session = factory.openSession();
         // 4.使用Session创建Dao接口的代理对象(代理实现Dao下的所有方法，比如findAll()方法)
-        IUserDao userDao = session.getMapper(IUserDao.class);
+        userDao = session.getMapper(IUserDao.class);
+    }
+
+    /**
+     * 测试方法执行后执行，一般用于清理资源
+     */
+    @After
+    public void destroy() throws IOException {
+        // 6.释放资源
+        session.close();
+        in.close();
+    }
+
+    /**
+     * 测试查询所有用户的操作
+     */
+    @Test
+    public void testFindAll() throws IOException {
         // 5.使用代理对象执行方法
         List<User> userList = userDao.findAll();
         for (User user : userList) {
             System.out.println(user);
         }
-        // 6.释放资源
-        session.close();
-        in.close();
     }
 
     /**
@@ -52,21 +70,10 @@ public class MyBatisTest {
      */
     @Test
     public void testSave() throws IOException {
-        // 1.读取配置文件
-        InputStream in = Resources.getResourceAsStream("SqlMapConfig.xml");
-        // 2.创建SqlSessionFactory工厂
-        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-        SqlSessionFactory factory = builder.build(in);
-        // 3.使用工厂生产SqlSession对象
-        SqlSession session = factory.openSession();
-        // 4.使用Session创建Dao接口的代理对象(代理实现Dao下的所有方法，比如findAll()方法)
-        IUserDao userDao = session.getMapper(IUserDao.class);
         // 5.使用代理对象执行方法
         User user = new User("梁山广", new Date(), "m", "上海市浦东新区");
         userDao.save(user);
+        // 提交事务才能保存到数据库
         session.commit();
-        // 6.释放资源
-        session.close();
-        in.close();
     }
 }

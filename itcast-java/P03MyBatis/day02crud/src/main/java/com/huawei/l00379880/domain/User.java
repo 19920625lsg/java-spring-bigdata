@@ -23,6 +23,12 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    /**
+     * 默认构造方法必须有
+     */
+    public User() {
+    }
+
     public Integer getId() {
         return id;
     }
