@@ -22,12 +22,16 @@
     <select id="findByCondition" parameterType="User" resultMap="userMap">
         select *
         from user
-        where 1 = 1
-        <if test="username != null">
-            and username = #{username}
-        </if>
-        <if test="sex != null">
-            and sex = #{sex}
-        </if>
+        # where 1 = 1
+        # 用where标签可以省去1=1的麻烦，简化xml
+        <where>
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+        </where>
+
     </select>
 </mapper>
