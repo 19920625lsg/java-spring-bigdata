@@ -3,13 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huawei.l00379880.dao.IUserDao">
-
     <!--  配置findAll -->
     <select id="findAll" resultType="com.huawei.l00379880.domain.User">
         select *
         from user;
     </select>
-
+    <!--  根据主键查询用户  -->
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.huawei.l00379880.domain.User">
+        select *
+        from user
+        where id = #{id}
+    </select>
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.huawei.l00379880.domain.User">
         insert into user(username, birthday, sex, address)
@@ -24,4 +28,10 @@
             birthday=#{birthday}
         where id = #{id}
     </update>
+    <!-- 删除用户 -->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete
+        from user
+        where id = #{id}
+    </delete>
 </mapper>

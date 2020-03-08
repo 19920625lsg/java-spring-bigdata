@@ -33,4 +33,19 @@ public interface IUserDao {
      * @param user 要更新的用户
      */
     void update(User user);
+
+    /**
+     * 根据用户id删除用户
+     *
+     * @param id 主键
+     */
+    void delete(Integer id);
+
+    /**
+     * 根据主键查询用户
+     *
+     * @param id 主键
+     * @return 查询到的用户
+     */
+    User findById(Integer id);
 }

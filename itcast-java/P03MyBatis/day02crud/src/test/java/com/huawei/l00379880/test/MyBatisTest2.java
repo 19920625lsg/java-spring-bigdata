@@ -48,6 +48,8 @@ public class MyBatisTest2 {
      */
     @After
     public void destroy() throws IOException {
+        // 提交事务才能保存到数据库
+        session.commit();
         // 6.释放资源
         session.close();
         in.close();
@@ -57,7 +59,7 @@ public class MyBatisTest2 {
      * 测试查询所有用户的操作
      */
     @Test
-    public void testFindAll() throws IOException {
+    public void testFindAll() {
         // 5.使用代理对象执行方法
         List<User> userList = userDao.findAll();
         for (User user : userList) {
@@ -66,21 +68,36 @@ public class MyBatisTest2 {
     }
 
     /**
+     * 测试根据id查找用户
+     */
+    @Test
+    public void testFindById(){
+        User user = userDao.findById(48);
+        System.out.println(user);
+    }
+
+    /**
      * 测试保存操作
      */
     @Test
-    public void testSave() throws IOException {
+    public void testSave() {
         // 5.使用代理对象执行方法
         User user = new User("梁山广", new Date(), "m", "上海市浦东新区");
         userDao.save(user);
-        // 提交事务才能保存到数据库
-        session.commit();
+    }
+
+    /**
+     * 测试更新操作
+     */
+    @Test
+    public void testUpdate() {
+        User user = new User(51, "梁山广", new Date(), "男", "上海市浦东新区");
+        userDao.update(user);
     }
 
     @Test
-    public void testUpdate(){
-        User user = new User(51,"梁山广", new Date(), "男", "上海市浦东新区");
-        userDao.update(user);
-        session.commit();
+    public void testDelete() {
+        userDao.delete(51);
     }
+
 }
