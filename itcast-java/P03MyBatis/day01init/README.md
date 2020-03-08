@@ -61,5 +61,20 @@ MyBatis的工作原理如下：
 ## findAll()方法的执行流程
 ![查询所有的分析](../ref/mybatis_day01/截图/查询所有的分析.png)
 
-## 如何定义自己的方法
+## 自己实现一个MyBatis
+> 还是很有用地，对理解MyBatis的原理和源码很有帮助
+```text
+mybatis在使用代理dao的方式实现增删改查时做什么事呢？
+    只有两件事：
+        第一：创建代理对象
+        第二：在代理对象中调用selectList
+    
+自定义mybatis能通过入门案例看到类
+    class Resources
+    class SqlSessionFactoryBuilder
+    interface SqlSessionFactory
+    interface SqlSession
+```
+
 ![自定义Mybatis分析](../ref/mybatis_day01/截图/自定义Mybatis分析.png)
+[代码](../ref/mybatis_day01/代码/mybati第一天源码/day01_eesy_04mybatis_design)

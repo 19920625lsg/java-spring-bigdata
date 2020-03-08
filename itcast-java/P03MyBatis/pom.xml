@@ -11,6 +11,7 @@
 
     <modules>
         <module>day01init</module>
+        <module>day02crud</module>
     </modules>
     <build>
         <plugins>
