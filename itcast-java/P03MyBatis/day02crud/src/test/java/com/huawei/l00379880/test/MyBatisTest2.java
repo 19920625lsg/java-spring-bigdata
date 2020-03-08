@@ -68,6 +68,17 @@ public class MyBatisTest2 {
     }
 
     /**
+     * 根据用户名模糊查询所有用户
+     */
+    @Test
+    public void testFindByUsername(){
+        List<User> userList = userDao.findByUsername("%王%");
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    /**
      * 测试根据id查找用户
      */
     @Test
@@ -97,7 +108,7 @@ public class MyBatisTest2 {
 
     @Test
     public void testDelete() {
-        userDao.delete(51);
+        userDao.delete(46);
     }
 
 }

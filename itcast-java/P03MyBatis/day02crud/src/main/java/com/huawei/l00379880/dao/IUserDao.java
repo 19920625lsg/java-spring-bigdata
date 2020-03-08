@@ -48,4 +48,11 @@ public interface IUserDao {
      * @return 查询到的用户
      */
     User findById(Integer id);
+
+    /**
+     * 根据用户名模糊查询符合的所有用户
+     * @param username 用户名模糊查询词
+     * @return 查询到的用户列表
+     */
+    List<User> findByUsername(String username);
 }
