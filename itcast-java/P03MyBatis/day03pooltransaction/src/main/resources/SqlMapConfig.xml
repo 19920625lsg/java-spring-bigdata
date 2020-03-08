@@ -30,5 +30,6 @@
     <!--  指定映射配置文件的位置，映射配置文件指地是每个dao独立的配置文件 -->
     <mappers>
         <mapper resource="com/huawei/l00379880/dao/IUserDao.xml"/>
+        <mapper resource="com/huawei/l00379880/dao/IAccountDao.xml"/>
     </mappers>
 </configuration>

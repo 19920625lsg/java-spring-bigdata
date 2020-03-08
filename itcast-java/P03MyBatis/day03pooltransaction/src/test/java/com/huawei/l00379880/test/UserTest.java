@@ -23,7 +23,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyBatisTest {
+public class UserTest {
 
     private InputStream in;
     private SqlSession session;
