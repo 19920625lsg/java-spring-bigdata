@@ -8,6 +8,7 @@ package com.huawei.l00379880.dao;
 
 
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.UserVo;
 
 import java.util.List;
 
@@ -16,4 +17,11 @@ public interface IUserDao {
      * 查询所有用户
      */
     List<User> findAll();
+
+    /**
+     * 根据传入的user的部分属性查询符合条件地用户列表
+     * @param user 不完整的用户对象，部分属性可能为空
+     * @return 用户列表
+     */
+    List<UserVo> findByCondition(User user);
 }

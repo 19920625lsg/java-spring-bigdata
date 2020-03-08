@@ -8,6 +8,7 @@ package com.huawei.l00379880.test;
 
 import com.huawei.l00379880.dao.IUserDao;
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.UserVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -63,6 +64,19 @@ public class MyBatisTest {
         List<User> userList = userDao.findAll();
         for (User user : userList) {
             System.out.println(user);
+        }
+    }
+
+    /**
+     * 测试条件查询
+     */
+    @Test
+    public void testFindBuCondition() {
+        User u = new User();
+        u.setUsername("老王");
+        List<UserVo> userList = userDao.findByCondition(u);
+        for (UserVo userVo : userList) {
+            System.out.println(userVo);
         }
     }
 }
