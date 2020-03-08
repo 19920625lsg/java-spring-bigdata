@@ -8,4 +8,10 @@
         select *
         from user;
     </select>
+
+    <!-- 保存用户 -->
+    <insert id="save" parameterType="com.huawei.l00379880.domain.User">
+        insert into user(username, birthday, sex, address)
+        VALUES (#{username}, #{birthday}, #{sex}, #{address})
+    </insert>
 </mapper>
