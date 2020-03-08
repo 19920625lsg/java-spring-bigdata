@@ -20,6 +20,10 @@
         from user
         where username like #{username}
     </select>
+    <!--  获取用户的总记录条数  -->
+    <select id="findTotal" resultType="int">
+        select count(id) from user;
+    </select>
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.huawei.l00379880.domain.User">
         insert into user(username, birthday, sex, address)

@@ -55,4 +55,10 @@ public interface IUserDao {
      * @return 查询到的用户列表
      */
     List<User> findByUsername(String username);
+
+    /**
+     * 查询用户总数
+     * @return 用户总数
+     */
+    int findTotal();
 }

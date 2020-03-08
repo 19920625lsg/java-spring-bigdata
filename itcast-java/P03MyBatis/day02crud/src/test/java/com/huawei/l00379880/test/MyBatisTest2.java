@@ -71,7 +71,7 @@ public class MyBatisTest2 {
      * 根据用户名模糊查询所有用户
      */
     @Test
-    public void testFindByUsername(){
+    public void testFindByUsername() {
         List<User> userList = userDao.findByUsername("%王%");
         for (User user : userList) {
             System.out.println(user);
@@ -82,9 +82,18 @@ public class MyBatisTest2 {
      * 测试根据id查找用户
      */
     @Test
-    public void testFindById(){
+    public void testFindById() {
         User user = userDao.findById(48);
         System.out.println(user);
+    }
+
+    /**
+     * 测试获取总记录条数
+     */
+    @Test
+    public void testFindTotal() {
+        int total = userDao.findTotal();
+        System.out.println("总共有的人数：" + total);
     }
 
     /**
@@ -102,7 +111,7 @@ public class MyBatisTest2 {
      */
     @Test
     public void testUpdate() {
-        User user = new User(51, "梁山广", new Date(), "男", "上海市浦东新区");
+        User user = new User(52, "梁山广", new Date(), "男", "上海市浦东新区");
         userDao.update(user);
     }
 
