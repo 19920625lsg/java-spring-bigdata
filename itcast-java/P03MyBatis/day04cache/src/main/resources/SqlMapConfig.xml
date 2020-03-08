@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis主配置文件 -->
+<configuration>
+    <!--  给麻烦的类引用起个别名，typeAliases必须放在configuration的第一个子节点上  -->
+    <typeAliases>
+        <!-- 单个别名定义 -->
+        <typeAlias type="com.huawei.l00379880.domain.User" alias="User"/>
+        <!-- 扫描实体类包下的类，别名为类名 -->
+        <package name="com.huawei.l00379880.domain"/>
+    </typeAliases>
+    <!--  配置环境  -->
+    <environments default="mysql">
+        <!-- 配置mysql的环境 -->
+        <environment id="mysql">
+            <!-- 配置事务的类型 -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 配置数据源(连接池) -->
+            <dataSource type="POOLED">
+                <!--  配置数据库连接的4个基本信息 -->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root"/>
+                <property name="password" value="tooldev"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--  指定映射配置文件的位置，映射配置文件指地是每个dao独立的配置文件 -->
+    <mappers>
+        <mapper resource="com/huawei/l00379880/dao/IUserDao.xml"/>
+        <mapper resource="com/huawei/l00379880/dao/IAccountDao.xml"/>
+    </mappers>
+</configuration>

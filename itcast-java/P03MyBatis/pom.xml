@@ -13,6 +13,7 @@
         <module>day01init</module>
         <module>day02crud</module>
         <module>day03pooltransaction</module>
+        <module>day04cache</module>
     </modules>
     <build>
         <plugins>
