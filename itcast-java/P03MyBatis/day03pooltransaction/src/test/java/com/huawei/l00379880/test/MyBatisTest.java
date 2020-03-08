@@ -8,6 +8,7 @@ package com.huawei.l00379880.test;
 
 import com.huawei.l00379880.dao.IUserDao;
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.QueryVo;
 import com.huawei.l00379880.vo.UserVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyBatisTest {
@@ -77,6 +79,24 @@ public class MyBatisTest {
         // u.setSex("女"); // 性别是否为空都可以查询到结果
         List<UserVo> userList = userDao.findByCondition(u);
         for (UserVo userVo : userList) {
+            System.out.println(userVo);
+        }
+    }
+
+    /**
+     * 测试：根据id列表查询用户列表
+     */
+    @Test
+    public void testFindByIds(){
+        QueryVo vo = new QueryVo();
+        List<Integer> idList = new ArrayList<>();
+        idList.add(41);
+        idList.add(42);
+        idList.add(52);
+        vo.setIdList(idList);
+
+        List<UserVo> userVoList = userDao.findByIds(vo);
+        for (UserVo userVo : userVoList) {
             System.out.println(userVo);
         }
     }

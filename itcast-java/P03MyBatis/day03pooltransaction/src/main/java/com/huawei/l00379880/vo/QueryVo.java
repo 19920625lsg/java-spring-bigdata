@@ -8,8 +8,12 @@ package com.huawei.l00379880.vo;
 
 import com.huawei.l00379880.domain.User;
 
+import java.util.List;
+
 public class QueryVo {
     private User user;
+
+    private List<Integer> idList;
 
     public User getUser() {
         return user;
@@ -17,5 +21,13 @@ public class QueryVo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Integer> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Integer> idList) {
+        this.idList = idList;
     }
 }

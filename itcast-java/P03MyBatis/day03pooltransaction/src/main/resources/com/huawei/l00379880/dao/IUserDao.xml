@@ -32,6 +32,17 @@
                 and sex = #{sex}
             </if>
         </where>
+    </select>
 
+    <!-- 根据id集合查找用户列表,foreach -->
+    <select id="findByIds" parameterType="com.huawei.l00379880.vo.QueryVo" resultMap="userMap">
+        select * from user
+        <where>
+            <if test="idList != null and idList.size() > 0">
+                <foreach collection="idList" open="and id in(" close=")" item="id" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
     </select>
 </mapper>
