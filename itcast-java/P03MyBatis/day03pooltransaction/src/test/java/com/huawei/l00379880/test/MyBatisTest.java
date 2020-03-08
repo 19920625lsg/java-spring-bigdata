@@ -74,6 +74,7 @@ public class MyBatisTest {
     public void testFindBuCondition() {
         User u = new User();
         u.setUsername("老王");
+        // u.setSex("女"); // 性别是否为空都可以查询到结果
         List<UserVo> userList = userDao.findByCondition(u);
         for (UserVo userVo : userList) {
             System.out.println(userVo);

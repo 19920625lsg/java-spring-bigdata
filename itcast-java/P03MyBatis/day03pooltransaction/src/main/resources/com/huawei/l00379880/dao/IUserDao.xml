@@ -24,7 +24,10 @@
         from user
         where 1 = 1
         <if test="username != null">
-            and username=#{username}
+            and username = #{username}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
         </if>
     </select>
 </mapper>
