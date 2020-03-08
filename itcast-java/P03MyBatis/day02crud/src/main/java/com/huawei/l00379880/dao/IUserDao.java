@@ -14,12 +14,23 @@ import java.util.List;
 public interface IUserDao {
     /**
      * 查询所有用户
+     *
+     * @return 所有的用户信息
      */
     List<User> findAll();
 
 
     /**
      * 保存用户
+     *
+     * @param user 要插入数据库的用户信息
      */
-    void save(User use);
+    void save(User user);
+
+    /**
+     * 更新用户
+     *
+     * @param user 要更新的用户
+     */
+    void update(User user);
 }

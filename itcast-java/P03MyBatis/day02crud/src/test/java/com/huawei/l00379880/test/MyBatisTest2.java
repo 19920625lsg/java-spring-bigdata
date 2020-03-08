@@ -76,4 +76,11 @@ public class MyBatisTest2 {
         // 提交事务才能保存到数据库
         session.commit();
     }
+
+    @Test
+    public void testUpdate(){
+        User user = new User(51,"梁山广", new Date(), "男", "上海市浦东新区");
+        userDao.update(user);
+        session.commit();
+    }
 }

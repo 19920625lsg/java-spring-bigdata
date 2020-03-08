@@ -23,6 +23,14 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    public User(Integer id, String username, Date birthday, String sex, String address) {
+        this.id = id;
+        this.username = username;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.address = address;
+    }
+
     /**
      * 默认构造方法必须有
      */
