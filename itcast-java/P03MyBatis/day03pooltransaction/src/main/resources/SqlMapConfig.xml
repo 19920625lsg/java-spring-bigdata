@@ -10,6 +10,7 @@
         <typeAlias type="com.huawei.l00379880.domain.User" alias="User"/>
         <!-- 扫描实体类包下的类，别名为类名 -->
         <package name="com.huawei.l00379880.domain"/>
+        <package name="com.huawei.l00379880.vo"/>
     </typeAliases>
     <!--  配置环境  -->
     <environments default="mysql">

@@ -7,4 +7,12 @@
         select *
         from account;
     </select>
+
+    <!--  查询所有账户，并带有用户名和地址信息  -->
+    <select id="findAllInfo" resultType="AccountVo">
+        select a.*, u.username, u.address
+        from account a,
+             user u
+        where u.id = a.UID;
+    </select>
 </mapper>

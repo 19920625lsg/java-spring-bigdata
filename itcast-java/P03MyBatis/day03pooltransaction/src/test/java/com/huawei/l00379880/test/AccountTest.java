@@ -9,6 +9,7 @@ package com.huawei.l00379880.test;
 import com.huawei.l00379880.dao.IAccountDao;
 import com.huawei.l00379880.domain.Account;
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.AccountVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -66,4 +67,11 @@ public class AccountTest {
         }
     }
 
+    @Test
+    public void testFindAllInfo(){
+        List<AccountVo> accountVoList = accountDao.findAllInfo();
+        for (AccountVo accountVo : accountVoList) {
+            System.out.println(accountVo);
+        }
+    }
 }
