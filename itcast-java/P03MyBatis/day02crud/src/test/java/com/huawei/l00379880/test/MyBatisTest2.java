@@ -9,6 +9,7 @@ package com.huawei.l00379880.test;
 import com.huawei.l00379880.dao.IUserDao;
 import com.huawei.l00379880.domain.User;
 import com.huawei.l00379880.vo.QueryVo;
+import com.huawei.l00379880.vo.UserVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -109,6 +110,17 @@ public class MyBatisTest2 {
         List<User> userList = userDao.findByQueryVo(vo);
         for (User u : userList) {
             System.out.println(u);
+        }
+    }
+
+    /**
+     * 测试自定义返回实体类型
+     */
+    @Test
+    public void testFindByUsernameAndReturnVo() {
+        List<UserVo> userVoList = userDao.findByUsernameAndReturnVo("%王%");
+        for (UserVo userVo : userVoList) {
+            System.out.println(userVo);
         }
     }
 

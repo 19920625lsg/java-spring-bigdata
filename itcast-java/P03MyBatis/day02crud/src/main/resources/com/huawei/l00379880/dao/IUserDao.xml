@@ -3,34 +3,55 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huawei.l00379880.dao.IUserDao">
+
     <!--  配置findAll -->
     <select id="findAll" resultType="com.huawei.l00379880.domain.User">
         select *
         from user;
     </select>
+
     <!--  根据主键查询用户  -->
     <select id="findById" parameterType="int" resultType="com.huawei.l00379880.domain.User">
         select *
         from user
         where id = #{id}
     </select>
+
     <!--  根据用户名模糊查询符合的所有用户  -->
     <select id="findByUsername" parameterType="string" resultType="com.huawei.l00379880.domain.User">
         select *
         from user
         where username like #{username}
     </select>
+
     <!--  获取用户的总记录条数  -->
     <select id="findTotal" resultType="int">
         select count(id)
         from user;
     </select>
+
     <!--  根据自定义条件查询用户  -->
     <select id="findByQueryVo" parameterType="com.huawei.l00379880.vo.QueryVo" resultType="com.huawei.l00379880.domain.User">
         select *
         from user
         where username like #{user.username}
     </select>
+
+    <!--  自定义返回的实体类型和数据库实体的映射  -->
+    <resultMap id="userMap" type="com.huawei.l00379880.vo.UserVo">
+        <!-- 主键字段的对应 -->
+        <id column="id" property="userId"/>
+        <!-- 非主键字段的对应 -->
+        <result column="username" property="name"/>
+        <result column="sex" property="gender"/>
+        <result column="address" property="site"/>
+    </resultMap>
+    <select id="findByUsernameAndReturnVo" parameterType="string" resultMap="userMap">
+        select *
+        from user
+        where username like #{username}
+    </select>
+
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.huawei.l00379880.domain.User">
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
@@ -39,6 +60,7 @@
         insert into user(username, birthday, sex, address)
         VALUES (#{username}, #{birthday}, #{sex}, #{address})
     </insert>
+
     <!-- 更新用户 -->
     <update id="update" parameterType="com.huawei.l00379880.domain.User">
         update user
@@ -48,6 +70,7 @@
             birthday=#{birthday}
         where id = #{id}
     </update>
+
     <!-- 删除用户 -->
     <delete id="delete" parameterType="int">
         delete

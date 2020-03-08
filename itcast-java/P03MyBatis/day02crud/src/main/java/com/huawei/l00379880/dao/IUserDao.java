@@ -9,6 +9,7 @@ package com.huawei.l00379880.dao;
 
 import com.huawei.l00379880.domain.User;
 import com.huawei.l00379880.vo.QueryVo;
+import com.huawei.l00379880.vo.UserVo;
 
 import java.util.List;
 
@@ -72,4 +73,12 @@ public interface IUserDao {
      * @return 查询结果
      */
     List<User> findByQueryVo(QueryVo vo);
+
+    /**
+     * 返回自定义的实体类，和数据库的字段不对应
+     *
+     * @param username 用户名
+     * @return 查询到的实体类
+     */
+    List<UserVo> findByUsernameAndReturnVo(String username);
 }
