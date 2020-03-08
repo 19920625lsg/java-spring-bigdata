@@ -6,6 +6,10 @@
  ***********************************************************/
 package com.huawei.l00379880.vo;
 
+import com.huawei.l00379880.domain.Account;
+
+import java.util.List;
+
 public class UserVo {
     private Integer userId;
     /**
@@ -20,6 +24,8 @@ public class UserVo {
      * 对应address
      */
     private String site;
+
+    private List<Account> accountList;
 
     public Integer getUserId() {
         return userId;
@@ -51,6 +57,14 @@ public class UserVo {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
 
     @Override

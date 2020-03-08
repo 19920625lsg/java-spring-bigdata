@@ -20,6 +20,13 @@ public interface IUserDao {
     List<User> findAll();
 
     /**
+     * 获取所有的用户，含有每个人的账户信息化
+     *
+     * @return 每个人含账户的信息
+     */
+    List<UserVo> findAllInfo();
+
+    /**
      * 根据传入的user的部分属性查询符合条件地用户列表
      *
      * @param user 不完整的用户对象，部分属性可能为空

@@ -8,16 +8,20 @@
         select *
         from user;
     </select>
-
     <!--  条件查询  -->
     <!--  自定义返回的实体类型和数据库实体的映射  -->
-    <resultMap id="userMap" type="com.huawei.l00379880.vo.UserVo">
+    <resultMap id="userMap" type="UserVo">
         <!-- 主键字段的对应 -->
         <id column="id" property="userId"/>
         <!-- 非主键字段的对应 -->
         <result column="username" property="name"/>
         <result column="sex" property="gender"/>
         <result column="address" property="site"/>
+        <collection property="accountList" ofType="Account">
+            <id property="id" column="uid"/>
+            <result property="uid" column="uid"/>
+            <result property="money" column="money"/>
+        </collection>
     </resultMap>
     <select id="findByCondition" parameterType="User" resultMap="userMap">
         select *
@@ -32,6 +36,12 @@
                 and sex = #{sex}
             </if>
         </where>
+    </select>
+
+    <select id="findAllInfo" resultMap="userMap">
+        select *
+        from user u
+                 left outer join account a on u.id = a.UID
     </select>
 
     <!-- 根据id集合查找用户列表,foreach -->

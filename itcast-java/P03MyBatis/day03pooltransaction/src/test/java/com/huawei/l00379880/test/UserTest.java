@@ -69,6 +69,16 @@ public class UserTest {
         }
     }
 
+    @Test
+    public void testFindAllInfo() {
+        List<UserVo> userVoList = userDao.findAllInfo();
+        for (UserVo userVo : userVoList) {
+            System.out.println("********************************用户信息********************************");
+            System.out.println(userVo);
+            System.out.println(userVo.getAccountList());
+        }
+    }
+
     /**
      * 测试条件查询
      */
@@ -87,7 +97,7 @@ public class UserTest {
      * 测试：根据id列表查询用户列表
      */
     @Test
-    public void testFindByIds(){
+    public void testFindByIds() {
         QueryVo vo = new QueryVo();
         List<Integer> idList = new ArrayList<>();
         idList.add(41);
