@@ -22,10 +22,14 @@
     </select>
     <!--  获取用户的总记录条数  -->
     <select id="findTotal" resultType="int">
-        select count(id) from user;
+        select count(id)
+        from user;
     </select>
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.huawei.l00379880.domain.User">
+        <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">
+            select last_insert_id();
+        </selectKey>
         insert into user(username, birthday, sex, address)
         VALUES (#{username}, #{birthday}, #{sex}, #{address})
     </insert>

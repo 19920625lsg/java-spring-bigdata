@@ -97,13 +97,17 @@ public class MyBatisTest2 {
     }
 
     /**
-     * 测试保存操作
+     * 测试保存操作，保存后id自动取回来了
      */
     @Test
     public void testSave() {
         // 5.使用代理对象执行方法
-        User user = new User("梁山广", new Date(), "m", "上海市浦东新区");
+        User user = new User("王蕊", new Date(), "女", "上海市浦东新区");
+        // 插入前：User{id=null, username='王蕊', birthday=Sun Mar 08 18:57:47 CST 2020, sex='女', address='上海市浦东新区'}
+        System.out.println("插入前：" + user);
         userDao.save(user);
+        // 插入后：User{id=53, username='王蕊', birthday=Sun Mar 08 18:57:47 CST 2020, sex='女', address='上海市浦东新区'}
+        System.out.println("插入后：" + user);
     }
 
     /**
@@ -115,6 +119,9 @@ public class MyBatisTest2 {
         userDao.update(user);
     }
 
+    /**
+     * 测试根据id删除记录
+     */
     @Test
     public void testDelete() {
         userDao.delete(46);
