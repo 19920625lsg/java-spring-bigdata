@@ -25,6 +25,12 @@
         select count(id)
         from user;
     </select>
+    <!--  根据自定义条件查询用户  -->
+    <select id="findByQueryVo" parameterType="com.huawei.l00379880.vo.QueryVo" resultType="com.huawei.l00379880.domain.User">
+        select *
+        from user
+        where username like #{user.username}
+    </select>
     <!-- 保存用户 -->
     <insert id="save" parameterType="com.huawei.l00379880.domain.User">
         <selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER">

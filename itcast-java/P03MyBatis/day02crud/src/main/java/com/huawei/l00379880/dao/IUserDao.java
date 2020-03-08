@@ -8,6 +8,7 @@ package com.huawei.l00379880.dao;
 
 
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.QueryVo;
 
 import java.util.List;
 
@@ -51,6 +52,7 @@ public interface IUserDao {
 
     /**
      * 根据用户名模糊查询符合的所有用户
+     *
      * @param username 用户名模糊查询词
      * @return 查询到的用户列表
      */
@@ -58,7 +60,16 @@ public interface IUserDao {
 
     /**
      * 查询用户总数
+     *
      * @return 用户总数
      */
     int findTotal();
+
+    /**
+     * 根据自定义查询条件获取结果
+     *
+     * @param vo 查询参数
+     * @return 查询结果
+     */
+    List<User> findByQueryVo(QueryVo vo);
 }

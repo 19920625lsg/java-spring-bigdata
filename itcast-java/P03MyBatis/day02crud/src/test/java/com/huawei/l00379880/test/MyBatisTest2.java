@@ -8,6 +8,7 @@ package com.huawei.l00379880.test;
 
 import com.huawei.l00379880.dao.IUserDao;
 import com.huawei.l00379880.domain.User;
+import com.huawei.l00379880.vo.QueryVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -94,6 +95,21 @@ public class MyBatisTest2 {
     public void testFindTotal() {
         int total = userDao.findTotal();
         System.out.println("总共有的人数：" + total);
+    }
+
+    /**
+     * 根据自定义条件模糊查询满足条件的用户
+     */
+    @Test
+    public void testFindByQueryVo() {
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUsername("%王%");
+        vo.setUser(user);
+        List<User> userList = userDao.findByQueryVo(vo);
+        for (User u : userList) {
+            System.out.println(u);
+        }
     }
 
     /**
