@@ -1,0 +1,7 @@
+spring第二天：spring基于注解的IOC以及IoC的案例
+1、spring中ioc的常用注解
+2、案例使用xml方式和注解方式实现单表的CRUD操作
+	持久层技术选择：dbutils
+3、改造基于注解的ioc案例，使用纯注解的方式实现
+	spring的一些新注解使用
+4、spring和Junit整合
