@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Java编程思想</artifactId>
+    <artifactId>P03MyBatisPlus</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <build>
