@@ -9,3 +9,4 @@
 + 5.[ZooKeeper分布式专题与Dubbo微服务入门](https://coding.imooc.com/learn/list/201.html)
 + 6.[Netty入门之WebSocket初体验](https://www.imooc.com/learn/941)
 + 7.[Websocket视频教程_SpringBoot-Maven整合](http://edu.51cto.com/course/13306.html):websocket
++ 8.[NIO与Socket编程技术指南_高洪岩](https://item.jd.com/12395281.html)
