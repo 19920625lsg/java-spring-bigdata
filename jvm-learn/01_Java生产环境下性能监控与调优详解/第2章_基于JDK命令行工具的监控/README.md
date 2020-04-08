@@ -9,34 +9,58 @@
 
 ## 2.1 JVM的参数类型
 
-+ **标准参数**
-  > 特点：比较稳定，在个jvm版本里基本不变
-  + `-help`:
-  + `-server`
-  + `-client`
-  + `-version`
-  + `-showversion`
-  + `-cp`
-  + `-classpath`
+### 标准参数
+> 特点：比较稳定，在个jvm版本里基本不变
++ `-help`:
++ `-server`
++ `-client`
++ `-version`
++ `-showversion`
++ `-cp`
++ `-classpath`
 
-+ **X参数: 非标准化参数**
-  > 在各个JVM版本中可能会变，但是变化很小
-  + `-Xint`:解释执行
-  + `-Xcomp`:第一次使用就编译成本地代码
-  + `-Xmixed`:混合模式,JVM自己来决定是否编译成本地代码
+### X参数: 非标准化参数
+> 在各个JVM版本中可能会变，但是变化很小
++ `-Xint`:解释执行
++ `-Xcomp`:第一次使用就编译成本地代码
++ `-Xmixed`:混合模式,JVM自己来决定是否编译成本地代码
 
-+ **XX参数: 非标准化参数**
-  > 相对不稳定, 主要用于jvm调优和Debug
-  + Boolean类型
-    + `[-XX:[+-]<name>]`:表示启用(+)或者禁用(-)name属性
-    + 比如：`-XX:+UseConcMarkSweepGC`表示启用CMS垃圾收集器;`-XX:+UseG1GC`表示使用G1垃圾收集器
-  + 非Boolean类型
-    + `[-XX:<name>=<value>]`:表示name的属性值是value
-    + 比如:`-XX:MaxGCPauseMillis=500`表示GC的最大停顿时间是500ms;`-XX:GCTimeRatio=19`表示GC的时间周期是19，后面会讲
-  + 下面三个比较特殊。虽然开头不是XX但仍然是XX参数
-    + `-Xmx`: 等价于`-XX:MaxHeapSize`,设置JVM最大内存
-    + `-Xms`: 等价于`-XX:InitialHeapSize`设置JVM最小内存
-    + `-Xss`: 启动一个线程所占的内存大小，默认1024K，可以调整为512K。调整性能。
+命令使用如下：
+
+```powershell
+C:\Users\pc>java -version
+java version "1.8.0_212"
+Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：混合模式，默认就是这个
+
+C:\Users\pc>java -Xcomp -version # -Xcomp 
+java version "1.8.0_212"
+Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, compiled mode) # compiled mode：编译模式
+
+C:\Users\pc>java -Xint -version # -Xint
+java version "1.8.0_212"
+Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, interpreted mode) # interpreted mode：交互模式
+
+C:\Users\pc>java -Xmixed -version # -Xmixed
+java version "1.8.0_212"
+Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：混合模式
+```
+
+### XX参数: 非标准化参数
+> 相对不稳定, 主要用于jvm调优和Debug
++ Boolean类型
+  + `[-XX:[+-]<name>]`:表示启用(+)或者禁用(-)name属性
+  + 比如：`-XX:+UseConcMarkSweepGC`表示启用CMS垃圾收集器;`-XX:+UseG1GC`表示使用G1垃圾收集器
++ 非Boolean类型
+  + `[-XX:<name>=<value>]`:表示name的属性值是value
+  + 比如:`-XX:MaxGCPauseMillis=500`表示GC的最大停顿时间是500ms;`-XX:GCTimeRatio=19`表示GC的时间周期是19，后面会讲
++ 下面三个比较特殊。虽然开头不是XX但仍然是XX参数
+  + `-Xmx`: 等价于`-XX:MaxHeapSize`,设置JVM最大内存
+  + `-Xms`: 等价于`-XX:InitialHeapSize`设置JVM最小内存
+  + `-Xss`: 启动一个线程所占的内存大小，默认1024K，可以调整为512K。调整性能。
 
 ## 2.2 查看JVM运行时参数
 
