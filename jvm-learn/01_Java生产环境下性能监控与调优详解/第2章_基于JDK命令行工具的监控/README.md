@@ -98,6 +98,32 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：
 + `-v`：输出jvm参数
 + `-V`：输出通过flag文件传递到JVM中的参数
 
+```shell
+$ jps
+24416 Jps
+7892 Bootstrap
+
+$ jps -q
+19952
+7892
+
+$ jps -m
+7892 Bootstrap start
+20760 Jps -m
+
+$ jps -l
+7892 org.apache.catalina.startup.Bootstrap
+26328 sun.tools.jps.Jps
+
+$ jps -v
+7892 Bootstrap -Djava.util.logging.config.file=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45\conf\logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dignore.endorsed.dirs= -Dcatalina.base=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45 -Dcatalina.home=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45 -Djava.io.tmpdir=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45\temp
+12940 Jps -Dapplication.home=D:\Program Files\Java\jdk1.8.0_212 -Xms8m
+
+$ jps -V
+7892 Bootstrap
+23580 Jps
+```
+
 ### jinfo
 
 + `jinfo flags 进程号`：查看进程设置过地参数值
@@ -107,6 +133,33 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：
   + `jinfo -flag UseG1GC 进程号`:查看G1垃圾回收器
   + `jinfo -flag UseParallelGC 进程号`:查看并行的垃圾回收器
 
+```shell
+$ jps -l
+7892 org.apache.catalina.startup.Bootstrap
+26328 sun.tools.jps.Jps
+
+$ jinfo -flags 7892 # 查看所有的Non-default VM flags即我们手动赋过值的flag
+Attaching to process ID 7892, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 25.212-b10
+Non-default VM flags: -XX:CICompilerCount=4 -XX:InitialHeapSize=534773760 -XX:MaxHeapSize=8556380160 -XX:MaxNewSize=2852126720 -XX:MinHeapDeltaBytes=524288 -XX:NewSize=178257920 -XX:OldSize=356515840 -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseFastUnorderedTimeStamps -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC
+Command line:  -Djava.util.logging.config.file=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45\conf\logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dignore.endorsed.dirs= -Dcatalina.base=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45 -Dcatalina.home=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45 -Djava.io.tmpdir=D:\Program Files\ApacheSoftware\apache-tomcat-8.5.45\temp
+
+# 根据PID查询进程7892的MaxHeapSize(最大内存)
+$ jinfo -flag MaxHeapSize 7892 
+-XX:MaxHeapSize=8556380160
+
+# 下面3个是查询垃圾回收器
+$ jinfo -flag UseConcMarkSweepGC 7892
+-XX:-UseConcMarkSweepGC
+
+$ jinfo -flag UseG1GC 7892
+-XX:-UseG1GC
+
+$ jinfo -flag UseParallelGC 7892
+-XX:+UseParallelGC
+```
 ## 2.3 jstat查看JVM统计信息
 
 > Jstat是JDK自带的一个轻量级小工具。全称“Java Virtual Machine statistics monitoring tool”，它位于java的bin目录下，主要利用JVM内建的指令对Java应用程序的资源和性能进行实时的命令行的监控，包括了对Heap size和垃圾回收状况的监控
