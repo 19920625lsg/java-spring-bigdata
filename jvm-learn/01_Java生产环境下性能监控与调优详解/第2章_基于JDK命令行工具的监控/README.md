@@ -54,7 +54,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：
 + Boolean类型
   + `[-XX:[+-]<name>]`:表示启用(+)或者禁用(-)name属性
   + 比如：`-XX:+UseConcMarkSweepGC`表示启用CMS垃圾收集器;`-XX:+UseG1GC`表示使用G1垃圾收集器
-+ 非Boolean类型
++ 非Boolean类型(`键值对类型`)
   + `[-XX:<name>=<value>]`:表示name的属性值是value
   + 比如:`-XX:MaxGCPauseMillis=500`表示GC的最大停顿时间是500ms;`-XX:GCTimeRatio=19`表示GC的时间周期是19，后面会讲
 + 下面三个比较特殊。虽然开头不是XX但仍然是XX参数
@@ -62,15 +62,31 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode) # mixed mode：
   + `-Xms`: 等价于`-XX:InitialHeapSize`设置JVM最小内存
   + `-Xss`: 启动一个线程所占的内存大小，默认1024K，可以调整为512K。调整性能。
 
-## 2.2 查看JVM运行时参数
 
-+ `-XX:+PrintFlagslnitial`:JVM初始化的参数
-+ `-XX:+PrintFlagFinal`:JVM最终的参数值，可能应用启动会修改JVM参数,比如：`java -XX:+PrintFlagsFinal -version`,可以得到所有的参数，其中
+举例如下：
+```shell
+[root@VM_0_15_centos bin]# ps ef | grep tomcat
+# 下面一开始的22843就是tomcat进行的PID
+22843 pts/0    Sl     0:02 /usr/bin/java -Djava.util.logging.config.file=/usr/local/tomcat8/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /usr/local/tomcat8/bin/bootstrap.jar:/usr/local/tomcat8/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat8 -Dcatalina.home=/usr/local/tomcat8 -Djava.io.tmpdir=/usr/local/tomcat8/temp org.apache.catalina.startup.Bootstrap start XDG_SESSION_ID=236475 HOSTNAME=VM_0_15_centos TERM=xterm SHELL=/bin/bash HISTSIZE=3000 SSH_CLIENT=223.104.5.228 16071 22 SSH_TTY=/dev/pts/0 JDK_JAVA_OPTIONS= --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED USER=root  PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin PWD=/usr/local/tomcat8/bin LANG=en_US.utf8 SHLVL=2 HOME=/root LOGNAME=root SSH_CONNECTION=223.104.5.228 16071 172.17.0.15 22 LESSOPEN=||/usr/bin/lesspipe.sh %s PROMPT_COMMAND=history -a; printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}" XDG_RUNTIME_DIR=/run/user/0 HISTTIMEFORMAT=%F %T  _=/usr/bin/java
+# MaxHeapSize：查看最大的堆大小
+[root@VM_0_15_centos bin]# jinfo -flag MaxHeapSize 22843
+-XX:MaxHeapSize=994050048
+# ThreadStackSize：线程栈的大小，1024k算比较大了，一般我们会把它调小
+[root@VM_0_15_centos bin]# jinfo -flag ThreadStackSize 22843
+-XX:ThreadStackSize=1024
+```
+
+## 2.2 查看JVM运行时参数
+> `java`+ `如下的命令`可以完成对应的功能
+
++ **-XX:+PrintFlagsInitial**:JVM初始化的参数，比如`java -XX:+PrintFlagsInitial -version`
++ **-XX:+PrintFlagFinal**:JVM最终的参数值，可能应用启动会修改JVM参数,比如：`java -XX:+PrintFlagsFinal -version`,可以得到所有的参数，其中
   + `=`表示默认值
   + `:=`表示赋值过
-+ `-XX:+UnlockExperimentalVMOptions`:解锁试验参数，部分参数需要设置这个才能赋值
-+ `-XX:+UnlockDiagnosticVMOptions`:解锁诊断参数
-+ `-XX:+PrintCommandLineFlags`:打印命令行参数
++ **-XX:+UnlockExperimentalVMOptions**:解锁试验参数，部分参数需要设置这个才能赋值
++ **-XX:+UnlockDiagnosticVMOptions**:解锁诊断参数
++ **-XX:+PrintCommandLineFlags**:打印命令行参数，如`java -XX:+PrintCommandLineFlags -version`
+
 
 ### jps
 
