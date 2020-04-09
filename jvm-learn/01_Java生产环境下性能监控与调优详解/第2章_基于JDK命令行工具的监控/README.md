@@ -195,7 +195,25 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]] # 指定option和
 
 ### `jstat -options`返回详解
 
-> `jstat -options`查看option的选项返回如下
+> `jstat -options`命令回显如下
+
+```shell
+[root@localhost ~]# jstat -options
+-class
+-compiler
+-gc
+-gccapacity
+-gccause
+-gcmetacapacity
+-gcnew
+-gcnewcapacity
+-gcold
+-gcoldcapacity
+-gcutil
+-printcompilation
+```
+
+每个option的具体含义如下：
 
 ```shell
 # 1.类加载 信息
@@ -215,6 +233,17 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]] # 指定option和
 # 3.JIT编译信息
 -compiler # 显示JIT编译的相关信息
 -printcompilation # 输出JIT编译的方法信息
+```
+
+上面各个option的使用方法举例：
+
+```shell
+[root@localhost ~]# jstat -class 866
+Loaded  Bytes  Unloaded  Bytes     Time
+2417    5000.6     0     0.0       3.29
+[root@ubuntu-99-43 bin]# jstat -gc 866 
+S0C       S1C     S0U    S1U      EC       EU       OC         OU       MC     MU    CCSC    CCSU   YGC     YGCT    FGC    FGCT     GCT
+85504.0  85504.0  0.0    0.0   515584.0 226872.1 1373696.0     0.0     4480.0 874.0  384.0   74.6    0      0.000    0     0.000    0.000
 ```
 
 具体每个option的使用和详解见[jstat命令详解](jstat命令详解.md)

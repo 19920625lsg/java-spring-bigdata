@@ -77,21 +77,21 @@ jstat –gc <pid>
 
 字段详解如下：
 
-+ S0C ：年轻代中第一个survivor（幸存区）的容量 （字节）
-+ S1C ：年轻代中第二个survivor（幸存区）的容量 (字节)
-+ S0U ：年轻代中第一个survivor（幸存区）目前已使用空间 (字节)
-+ S1U ：年轻代中第二个survivor（幸存区）目前已使用空间 (字节)
-+ EC  ：年轻代中Eden（伊甸园）的容量 (字节)
-+ EU  ：年轻代中Eden（伊甸园）目前已使用空间 (字节)
-+ OC  ：Old代的容量 (字节)
-+ OU  ：Old代目前已使用空间 (字节)
-+ MC  ：metaspace(元空间)的容量 (字节)
-+ MU  ：metaspace(元空间)目前已使用空间 (字节)
-+ YGC ：从应用程序启动到采样时年轻代中gc次数
-+ YGCT：从应用程序启动到采样时年轻代中gc所用时间(s)
-+ FGC ：从应用程序启动到采样时old代(全gc)gc次数
-+ FGCT：从应用程序启动到采样时old代(全gc)gc所用时间(s)
-+ GCT ：从应用程序启动到采样时gc用的总时间(s)
++ S0C ：`S0 Capacity`, 年轻代中第一个survivor（幸存区）的容量 （字节）
++ S1C ：`S1 Capacity`, 年轻代中第二个survivor（幸存区）的容量 (字节)
++ S0U ：`S0 Used`, 年轻代中第一个survivor（幸存区）目前已使用空间 (字节)
++ S1U ：`S1 Used`, 年轻代中第二个survivor（幸存区）目前已使用空间 (字节)
++ EC  ：`Eden Capacity`, 年轻代中Eden（伊甸园）的容量 (字节)
++ EU  ：`Eden Used`, 年轻代中Eden（伊甸园）目前已使用空间 (字节)
++ OC  ：`Old Capacity`, Old代的容量 (字节)
++ OU  ：`Old Used`, Old代目前已使用空间 (字节)
++ MC  ：`Metaspace Capacity`, metaspace(元空间)的容量 (字节)
++ MU  ：`Metaspace Used`, metaspace(元空间)目前已使用空间 (字节)
++ YGC ：`Young GC`, 从应用程序启动到采样时`年轻代(Young)`中gc次数
++ YGCT：`Young GC Time`, 从应用程序启动到采样时年轻代中gc所用时间(s)
++ FGC ：`Full GC`, 从应用程序启动到采样时old代(全gc)gc次数
++ FGCT：`Full GC Time`, 从应用程序启动到采样时old代(全gc)gc所用时间(s)
++ GCT ：`GC Time`, 从应用程序启动到采样时gc用的总时间(s)
 
 ### `-gccapacity`
 
