@@ -30,7 +30,7 @@
 先看下这个博客，JVM中堆和栈的区别：https://www.cnblogs.com/Jashinck/p/10480776.html
 
 每个命令回显的字段含义参考下图进行理解：
-![JVM内存结构](../images/JVM内存结构.jpg)
+![JVM内存结构](https://i.loli.net/2020/04/09/vweqB1PKI8WSifr.jpg)
 
 ## 1、类加载
 

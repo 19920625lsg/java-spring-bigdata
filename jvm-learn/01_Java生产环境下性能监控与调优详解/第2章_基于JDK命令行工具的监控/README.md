@@ -240,7 +240,7 @@ jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]] # 指定option和
 > 具体每个option的使用和详解见[jstat命令详解](jstat命令详解.md)
 
 每个命令回显的字段含义参考下图进行理解：
-![JVM内存结构](../images/JVM内存结构.jpg)
+![JVM内存结构](https://i.loli.net/2020/04/09/vweqB1PKI8WSifr.jpg)
 
 ## 2.4 堆溢出和Metaspace溢出
 
