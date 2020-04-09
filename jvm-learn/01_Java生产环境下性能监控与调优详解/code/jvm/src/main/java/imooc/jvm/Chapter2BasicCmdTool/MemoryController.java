@@ -42,7 +42,7 @@ public class MemoryController {
      * 非堆区溢出，这里以MetaSpace区为例，MetaSpace里面存储地是类、Field等元数据信息
      * 在Run Configurations-->Configurations-->VM Options 添加"-XX:MetaspaceSize=32M -XX:MaxMetaspaceSize=32M" 即可(JDK8)
      * 访问：http://localhost:9999/nonheap
-     * 很快就会报错：java.lang.OutOfMemoryError: GC overhead limit exceeded
+     * 很快就会报错：Exception in thread "http-nio-9999-exec-1" java.lang.OutOfMemoryError: Metaspace
      */
     @GetMapping("/nonheap")
     public void nonheap() {
