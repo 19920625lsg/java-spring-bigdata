@@ -455,7 +455,7 @@ PS Old Generation
 + 以服务器119.3.80.210为例，多次访问 http://119.3.80.210:9999/jstack/endless_loop ，top命令查看服务器负载，发现负载和CPU都在飙升
   > ![死循环导致的系统负载过高](../images/死循环导致的系统负载过高.png)
 + 根据上图获取到的出问题的PID=12449,使用jstack导出栈信息`jstack 12449 > endless_loop_pid12449.txt`,信息内容见[endless_loop_pid12449.txt](../code/jvm/src/main/java/imooc/jvm/Chapter2BasicCmdTool/endless_loop_pid12449.txt)
-+ 查看进程PID=12449内每个线程的内存情况`top =p 12449 -H`,可以得到如下信息
++ 查看进程PID=12449内每个线程的内存情况`top -p 12449 -H`,可以得到如下信息
   > ![使用top命令查看进程内的线程内存情况](../images/使用top命令查看进程内的线程内存情况.png)
 + 选择排名较高地几个线程,比如上图的12465、12466、12467、12469，把PID号(其实是线程号)[转换为十六进制](https://tool.lu/hexconvert)分别为0x30b1、0x30b2、0x30b3、0x30b5，去endless_loop_pid12449.txt寻找相关日志块，排查块里面的代码即可，以0x30b1为例，出错日志块如下，可以很容易看出是getPartneridsFromJson()函数出了问题
   ```hava
