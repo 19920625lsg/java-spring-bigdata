@@ -168,7 +168,8 @@ $ jinfo -flag UseParallelGC 7892
 + [jstat官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html)
 + [jvm性能调优工具之 jstat](https://www.jianshu.com/p/213710fb9e40)
 + [java虚拟机博客集合](https://www.jianshu.com/c/25c9e47f8d93)
-+ [JJVM内存模型](https://www.jianshu.com/p/5946c0a414b5)
++ [JVM内存模型](https://www.jianshu.com/p/5946c0a414b5)
++ [JVM中堆和栈的区别](https://www.cnblogs.com/Jashinck/p/10480776.html)
 
 ### jstat可以查看哪些信息?
 
