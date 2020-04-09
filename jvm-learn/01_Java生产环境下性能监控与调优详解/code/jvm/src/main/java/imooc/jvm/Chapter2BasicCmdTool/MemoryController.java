@@ -24,6 +24,8 @@ public class MemoryController {
      * 需要先设置最大内存和最小内存，在Run Configurations-->Configurations-->VM Options 添加"-Xmx32M -Xms32M"即可
      * 访问：http://localhost:9999/heap
      * 很快就会出现如下错误： Exception in thread "http-nio-9999-exec-1" java.lang.OutOfMemoryError: GC overhead limit exceeded
+     * 出现堆内存溢出了，因为类的实例对象是存放在堆里面的，当不断new新的User对象时，一旦超过Xmx配置的堆内存上限，就会产生堆内存溢出现象了
+     * 要熟悉堆区和栈区的区别，参考文章 JVM中堆和栈的区别：https://www.cnblogs.com/Jashinck/p/10480776.html
      */
     @GetMapping("/heap")
     public void heap() {
