@@ -432,12 +432,10 @@ PS Old Generation
 
 > jstack是jdk自带的线程堆栈分析工具，使用该命令可以查看或导出 Java 应用程序中线程堆栈信息,多用于定位多线程死锁问题
 
-参考博客
-
+参考博客如下：
++ [JVM中堆和栈的区别](https://www.cnblogs.com/Jashinck/p/10480776.html)
 + [jvm 性能调优工具之 jstack](https://www.jianshu.com/p/025cb069cb69)
 + [如何使用jstack分析线程状态](https://www.cnblogs.com/wuchanming/p/7766994.html)
-+ [死循环导致CPU负载高](https://blog.csdn.net/goldenfish1919/article/details/8755378)
-+ [正则表达式导致死循环](https://blog.csdn.net/goldenfish1919/article/details/49123787)
 
 线程状态及转换如下图：
 
