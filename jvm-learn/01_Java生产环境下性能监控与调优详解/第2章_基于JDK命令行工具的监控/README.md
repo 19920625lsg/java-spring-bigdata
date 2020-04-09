@@ -421,9 +421,10 @@ PS Old Generation
 
 ## 2.6 MAT工具分析内存溢出
 
-> 参考教程
+> MAT : `Memory Analyzer Tool`，参考教程如下。
 
 + [利用jmap和MAT等工具查看JVM运行时堆内存](https://www.cnblogs.com/cjsblog/p/9561375.html)
+  > 主要是`Histogram`和`Dominator Tree`要好好学会~~把上一节的dump文件定位到User类
 + [官方教程](https://www.eclipse.org/mat/)
 + [下载地址](https://www.eclipse.org/mat/downloads.php)
 
