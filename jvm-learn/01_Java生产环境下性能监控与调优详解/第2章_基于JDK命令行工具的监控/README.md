@@ -365,7 +365,57 @@ Heap dump file created
 
 ```
 
-通过`jmap -heap pid`也可以查看具体的堆栈信息
+通过`jmap -heap pid`也可以查看具体的堆使用信息
+```shell
+ jmap -heap 15636
+Attaching to process ID 15636, please wait...
+Debugger attached successfully.
+Server compiler detected.
+JVM version is 25.232-b09
+
+using thread-local object allocation.
+Parallel GC with 10 thread(s)
+
+Heap Configuration:
+   MinHeapFreeRatio         = 0
+   MaxHeapFreeRatio         = 100
+   MaxHeapSize              = 33554432 (32.0MB)
+   NewSize                  = 11010048 (10.5MB)
+   MaxNewSize               = 11010048 (10.5MB)
+   OldSize                  = 22544384 (21.5MB)
+   NewRatio                 = 2
+   SurvivorRatio            = 8
+   MetaspaceSize            = 21807104 (20.796875MB)
+   CompressedClassSpaceSize = 1073741824 (1024.0MB)
+   MaxMetaspaceSize         = 17592186044415 MB
+   G1HeapRegionSize         = 0 (0.0MB)
+
+# 从这面可以看出JVM内存结构，新生代(Young)和老生代(Old)，Eden和Old Generation占用率很高，这两块都属于堆区，就是因为堆溢出才占用率高地
+Heap Usage:
+PS Young Generation
+Eden Space:
+   capacity = 6815744 (6.5MB)
+   used     = 6815736 (6.499992370605469MB)
+   free     = 8 (7.62939453125E-6MB)
+   99.99988262469952% used # 占用率很高
+From Space:
+   capacity = 2097152 (2.0MB)
+   used     = 0 (0.0MB)
+   free     = 2097152 (2.0MB)
+   0.0% used
+To Space:
+   capacity = 2097152 (2.0MB)
+   used     = 0 (0.0MB)
+   free     = 2097152 (2.0MB)
+   0.0% used
+PS Old Generation
+   capacity = 22544384 (21.5MB)
+   used     = 22093480 (21.069984436035156MB)
+   free     = 450904 (0.43001556396484375MB)
+   97.99992760946584% used  # 占用率很高
+
+13573 interned Strings occupying 1334536 bytes.
+```
 
 **注意**：推荐用jmap命令手动导出，因为到文件较大时，方法一的自动导出可能会出问题导不出来
 
