@@ -26,9 +26,9 @@
   + `-compiler`: 显示JIT编译的相关信息
   + `-printcompilation`: 输出JIT编译的方法信息
 
-## 一、类加载
+## 1、类加载
 
-### `-class`
+### 1.1 `-class`
 
 > 显示加载class的数量，以及所占空间等信息
 
