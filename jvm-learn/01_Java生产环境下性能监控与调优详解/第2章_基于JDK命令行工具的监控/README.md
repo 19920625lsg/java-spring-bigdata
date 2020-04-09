@@ -437,9 +437,14 @@ PS Old Generation
 + [jvm 性能调优工具之 jstack](https://www.jianshu.com/p/025cb069cb69)
 + [如何使用jstack分析线程状态](https://www.cnblogs.com/wuchanming/p/7766994.html)
 
+线程状态的讲解博客：https://www.cnblogs.com/developer_chan/p/10391365.html
 线程状态及转换如下图：
 
 ![线程状态及转换](https://raw.githubusercontent.com/19920625lsg/JavaThread/master/Part0XdClass/笔记课件/线程状态转换.jpg)
+
+官网图如下：
+
+![线程状态及转换_官网图](https://img2018.cnblogs.com/blog/706569/201902/706569-20190217153844611-518770169.png)
 
 ## 2.8 JVM实战死循环和死锁
 
