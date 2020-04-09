@@ -345,7 +345,7 @@ Exception in thread "http-nio-9999-exec-1" java.lang.OutOfMemoryError: GC overhe
 利用jmap命令 来导出命令执行时的内存快照。`jmap -dump:format=b,file=导出的文件路径 .hprof  pid`
 
 ```shell
-➜  /Users/liangshanguang/Program/Java/jvm-learn/01_Java生产环境下性能监控与调优详解/code/jvm git:(master) ✗   jmap -dump:format=b,file=heap_by_jmap.hprof 43813 # 手动jmap命令导出内存映射问津
+➜  /Users/liangshanguang/Program/Java/jvm-learn/01_Java生产环境下性能监控与调优详解/code/jvm git:(master) ✗   jmap -dump:format=b,file=heap_by_jmap.hprof 43813 # 手动jmap命令导出内存映射文件
 Dumping heap to /Users/liangshanguang/Program/Java/jvm-learn/01_Java生产环境下性能监控与调优详解/code/jvm/heap_by_jmap.hprof ...
 Heap dump file created
 
@@ -366,6 +366,8 @@ Heap dump file created
 ```
 
 通过`jmap -heap pid`也可以查看具体的堆栈信息
+
+**注意**：推荐用jmap命令手动导出，因为到文件较大时，方法一的自动导出可能会出问题导不出来
 
 ## 2.6 MAT工具分析内存溢出
 
