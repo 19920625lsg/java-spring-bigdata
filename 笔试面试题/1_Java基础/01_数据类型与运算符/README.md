@@ -142,6 +142,76 @@ java的String底层是char数组，它的length()返回数组大小，而unicode
 + round: 对小数进行四舍五入后的结果。返回int类型
          例如：Math.round(-4.6) = -5
 
+### 5.下面代码的执行结果是：`A`
++ A. Ceil d1=-0.0
+floor d1=-1.0
++ B.Ceil d1=0.0
+floor d1=-1.0
++ C.Ceil d1=-0.0
+floor d1=-0.0
++ D.Ceil d1=0.0
+floor d1=0.0
++ E.Ceil d1=0
+floor d1=-1
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3813666
+
+注意：-0.0的写法
+
+### 6.下面代码的输出结果是(`A`)
+```java
+class Value{
+    public int i=15;
+}
+public class Test{
+    public static void main(String argv[]){
+        Test t=new Test( );
+        t.first( );
+    }
+ 
+public void first( ){
+    int i=5;
+    Value v=new Value( );
+    v.i=25;
+    second(v,i);
+    System.out.println(v.i);
+}
+ 
+public void second(Value v,int i){
+    i = 0;
+    v.i = 20;
+    Value val = new Value( );
+    v = val;
+    System.out.println(v.i+" "+i);
+   }
+}
+```
+
++ A.`15 0 20`
++ B.`15 0 15`
++ C.`20 0 20`
++ D.`0 15 20`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793985
+
+可能有人会选择B，包括我刚开始也是。总以为v不是已经指向了val了吗？？为什么还是20呢？不应该是15吗？
+其实，原因很简单。现在我们把second（）换一下
+```java
+public void second(Value tmp,int i){
+    i = 0;
+    tmp.i = 20;
+    Value val = newValue( );
+    tmp = val;
+    System.out.println(tmp.i+" "+i);
+}
+```
+这个tmp其实相当于是一个指向原来first中的V这个对象的指针，也就是对v对象的引用而已。但是引用是会改变所指的地址的值的。
+所以在second中当tmp.i= 20的时候，就把原来first中的v的i值改为20了。接下来，又把tmp指向了新建的一个对象，所以在second中的tmp
+现在指的是新的对象val，i值为15.
+当执行完毕second后，在first中在此输出v.i的时候，应为前面second中已经把该位置的i的值改为了20，所以输出的是20.
+至于疑惑v指向了val，其实只是名字的问题，在second中的v实践也是另外的一个变量，名字相同了而已，这个估计也是纠结的重点。
+简单的总结，不对希望可以提出来，谢谢！
+
 ## 四、多选题
 ### 1.已知
 ```java

@@ -47,4 +47,20 @@ public String(byte bytes[], String charsetName)
 + 对于UTF-8编码标准，英文占用1个字节，中文占用3个字节
 + 对于Unicode编码标准，英文中文都是2个字节。这也是为什么叫做unicode
 
+### 2.以下关于对象序列化描述正确的是(`CD`)
++ A.使用FileOutputStream可以将对象进行传输
++ B.使用PrintWriter可以将对象进行传输
++ C.使用transient修饰的变量不会被序列化
++ D.对象序列化的所属类需要实现Serializable接口
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3794034
+
+ A和B：能够对对象进行传输的貌似只有ObjectOutputStream和ObjectInputStream这些以Object开头的流对象
+
+关于关于序列化的知识：
+![常见的序列化类](images/常见的序列化类.png)
+![序列化的前提](images/序列化的前提.png)
+![序列化的继承](images/序列化的继承.png)
+
+
 ## 五、问答题

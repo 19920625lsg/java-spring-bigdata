@@ -255,4 +255,12 @@ synchronized关键字和volatile关键字比较：
 + 17、信号量 使用阻塞锁 实现的一种策略
 + 18、排它锁：X锁，若事务T对数据对象A加上X锁，则只允许T读取和修改A，其他任何事务都不能再对A加任何类型的锁，直到T释放A上的锁。这就保证了其他事务在T释放A上的锁之前不能再读取和修改A。
 
+### 8.以下哪几种方式可用来实现线程间通知和唤醒：(`AC`)
++ A.`Object.wait/notify/notifyAll`
++ B.`ReentrantLock.wait/notify/notifyAll`
++ C.`Condition.await/signal/signalAll`
++ D.`Thread.wait/notify/notifyAll`
+
+> https://www.nowcoder.com/profile/934336/myFollowings/detail/3794040
+
 ## 五、问答题
