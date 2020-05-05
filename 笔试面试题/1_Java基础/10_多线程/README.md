@@ -53,6 +53,18 @@ for (int i = 1; i <= 2; ++i) {
 
 > 每个线程输出0，1，2，3，4，’空格， 输出空格前必有线程输出了0-4，所以选C、
 
+### 4.假设如下代码中，若t1线程在t2线程启动之前已经完成启动。代码的输出是（`B`）
++ A.Thread 1 wake up
+Thread 2 sent notify.
++ Thread 2 sent notify.
+Thread 1 wake up
++ A、B皆有可能
++ 程序无输出卡死
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3945817
+
+执行obj.wait();时已释放了锁，所以t2可以再次获得锁，然后发消息通知t1执行，但这时t2还没有释放锁，所以肯定是执行t2，然后释放锁，之后t1才有机会执行。
+
 ## 四、多选题
 ### 1.下面有关java threadlocal说法正确的有？(`ABCD`)
 + A.ThreadLocal存放的值是线程封闭，线程间互斥的，主要用于线程内共享一些数据，避免通过参数来传递

@@ -38,6 +38,15 @@ i=temp;
 ```
 D:`(int)i`不是 `int(i)`
 
+### 4.StringBuffer类对象创建之后可以再修改和变动.(`A`)
++ A.正确
++ B.错误
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4010285
+
++ String对象不可变的含义：举个例子：String str = "aa"; str = "aa"+"bb"; 此时str的值为"aabb"，但是"aabb"不是在开始的字符串"aa"后面直接连接的"bb"，而是又新生成了字符串"aabb"，字符串"aa"一旦被初始化，那么它的值不可能再改变了。 
++ StringBuffer对象可变的含义： StringBuffer strb = StringBuffer("aa"); strb.append("bb"); 此时的strb的值也为"aabb"，但是"aabb"是直接在开始的字符串"aa"后面连接的“bb”，并没有生成新的字符串。
+
 ## 三、单选题
 
 ### 1.以下哪一个不是赋值符号？（`C`）
@@ -53,6 +62,36 @@ C.混合赋值运算符的使用
 + `>>`表示带符号右移位
 + `>>>`表示无符号右移
 + 但是没有`<<<`运算符
+
+### 4.在jdk1.5之后，下列 java 程序输出结果为(`B`)
++ A.true,false
++ B.true,true
++ C.false,true
++ D.false,false
++ E.对于不同的环境结果不同
++ F.程序无法执行
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4010294
+
+本题是一个自动拆装箱的考题(自动拆装箱JDK需在1.5上），下面的讨论都不针对新开辟对象的情况：
+1、基本型和基本型封装型进行“==”运算符的比较，基本型封装型将会自动拆箱变为基本型后再进行比较，因此Integer(0)会自动拆箱为int类型再进行比较，显然返回true；
+2、两个Integer类型进行“==”比较，如果其值在-128至127，那么返回true，否则返回false, 这跟Integer.valueOf()的缓冲对象有关，这里不进行赘述。
+3、两个基本型的封装型进行equals()比较，首先equals()会比较类型，如果类型相同，则继续比较值，如果值也相同，返回true
+4、基本型封装类型调用equals(),但是参数是基本类型，这时候，先会进行自动装箱，基本型转换为其封装类型，再进行3中的比较。
+
+```java
+int a=257;
+Integer b=257;
+Integer c=257;
+Integer b2=57;
+Integer c2=57;
+System.out.println(a==b);
+//System.out.println(a.equals(b));  编译出错，基本型不能调用equals()
+System.out.println(b.equals(257.0));
+System.out.println(b==c);
+System.out.println(b2==c2);
+```
+因此上面的代码的结果因此为 true, false, false, true
 
 ### 2.以下代码的输出的正确结果是(`D`)
 ```java
@@ -85,6 +124,23 @@ java的String底层是char数组，它的length()返回数组大小，而unicode
 + B、static方法中不能用this
 + C、b是非静态成员变量，只能用实例引用
 + D、正确
+
+### 4.Math.floor(-8.5)=(`D`)
++ A.`(float)-8.0`
++ B.`(long)-9`
++ C.`(long)-8`
++ D.`(double)-9.0`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3945822
+
++ floor: 求小于参数的最大整数。返回double类型-----n. 地板，地面
+         例如：Math.floor(-4.2) = -5.0
+
++ ceil:   求大于参数的最小整数。返回double类型-----vt. 装天花板；
+         例如：Math.ceil(5.6) = 6.0
+
++ round: 对小数进行四舍五入后的结果。返回int类型
+         例如：Math.round(-4.6) = -5
 
 ## 四、多选题
 ### 1.已知
@@ -172,5 +228,58 @@ Java表达式转型规则由低到高转换：
 + 语句2正确：b6=b4+b5;b4、b5为final类型，不会自动提升，所以和的类型视左边变量类型而定，即b6可以是任意数值类型；
 + 语句3错误：b8=(b1+b4);虽然b4不会自动提升，但b1仍会自动提升，所以结果需要强转，b8=(byte)(b1+b4);
 + 语句4错误：b7=(b2+b5); 同上。同时注意b7是final修饰，即只可赋值一次，便不可再改变。
+
+### 4.下面为true的是(`G`)
+```java
+Integer i = 42;
+Long l = 42l;
+Double d = 42.0;
+```
+
++ A.`(i == l)`
++ B.`(i == d)`
++ C.`(l == d)`
++ D.`i.equals(d)`
++ E.`d.equals(l)`
++ F.`i.equals(l)`
++ G.`l.equals(42L)`
+
+> 解答：
+
++ 1、基本型和基本型封装型进行“==”运算符的比较，基本型封装型将会自动拆箱变为基本型后再进行比较，因此Integer(0)会自动拆箱为int类型再进行比较，显然返回true；
+    ```java
+    int a = 220;
+    Integer b = 220;
+    System.out.println(a==b);//true
+    ```
+
++ 2、两个Integer类型进行“==”比较， 如果其值在-128至127  ，那么返回true，否则返回false, 这跟Integer.valueOf()的缓冲对象有关，这里不进行赘述。
+    ```java
+    Integer c=3;
+    Integer h=3;
+    Integer e=321;
+    Integer f=321;
+    System.out.println(c==h);//true
+    System.out.println(e==f);//false
+    ```
+
++ 3、两个基本型的封装型进行equals()比较，首先equals()会比较类型，如果类型相同，则继续比较值，如果值也相同，返回true。
+    ```java
+    Integer a=1;
+    Integer b=2;
+    Integer c=3;
+    System.out.println(c.equals(a+b));//true
+    ```
+
++ 4、基本型封装类型调用equals(),但是参数是基本类型，这时候，先会进行自动装箱，基本型转换为其封装类型，再进行3中的比较。 
+    ```java
+    int i=1;
+    int j = 2;
+    Integer c=3;
+    System.out.println(c.equals(i+j));//true
+    ```
+
+
+
 
 ## 五、问答题

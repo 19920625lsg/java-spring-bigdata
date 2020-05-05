@@ -92,7 +92,19 @@ JVM内存五大区域：
 + 3.持久代：
     持久代如果满了，将触发Full GC
 
+### 4.关于OutOfMemoryError，下面说法正确的是（`ABC`）？
++ `java.lang.OutOfMemoryError`: PermGen space 增加-XX:MaxPermSize这个参数的值的话，这个问题通常会得到解决。
++ `java.lang.OutOfMemoryError`: Requested array size exceeds VM limit当你正准备创建一个超过虚拟机允许的大小的数组时，这条错误将会出现
++ `java.lang.OutOfMemoryError`: Java heap space 一般情况下解决这个问题最快的方法就是通过-Xmx参数来增加堆的大小
++ `java.lang.OutOfMemoryError`: nativeGetNewTLA这个异常只有在jRockit虚拟机时才会碰到
 
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4010302
+
+关于此题，《深入理解java虚拟机》有关于OOM（OutOfMemory）问题的解释
++ A：属于运行时常量池导致的溢出，设置`-XX：MaxPermSize`可以解决这个问题，
++ B：属于堆空间不足导致的错误，问题比较少见，解决方式和C相同，
++ C：属于java堆内存问题，一般的手段是通过内存映像分析工具，对Dump出来的堆转储存快照进行分析，重点是确认内存中的对象是否是有必要的，也就是要判断是出现了内存泄漏，还是出现了内存溢出，如果是内存列楼，通过工具检查泄露对象打GC Roots的引用链信息，可以准确的确定出泄露代码的位置，不存在泄露，就应该检查虚拟机的堆参数，如果可以继续调大，可以设置-Xmx解决问题
++ D：java.lang.OutOfMemoryError: nativeGetNewTLA指当虚拟机不能分配新的线程本地空间(Thread Local Area）的时候错误信息，此错误是线程申请一个新的TLA时产生的，这个异常一般只会发生在jRockit虚拟机，只有过于绝对。
 
 ## 五、问答题
 
