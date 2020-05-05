@@ -55,6 +55,39 @@ public class Demo {
 + finally在return之前执行，但是trycatch中的return值是在进finally之前决定地
 + finally在return之前执行，但是如果finally使用了return或者throw语句，将会使trycatch中的return或者throw失效
 
+### 3.以下代码段执行后的输出结果为(`D`)
+```java
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(test());
+    }
+
+    private static int test() {
+        int temp = 1;
+        try {
+            System.out.println(temp);
+            return ++temp;
+        } catch (Exception e) {
+            System.out.println(temp);
+            return ++temp;
+        } finally {
+            ++temp;
+            System.out.println(temp);
+        }
+    }
+}
+```
++ A.`1,2,2`
++ B.`1,2,3`
++ C.`1,3,3`
++ D.`1,3,2`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779705
+
+finally在return之前执行，但是trycatch中的return值是在进finally之前决定地。和上面的题很类似
+
+### 
+
 ## 四、多选题
 
 ## 五、问答题
