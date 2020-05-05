@@ -323,6 +323,34 @@ class Base
 
 继承是根源，重写是表现形式
 
+### 14.类Parent和Child定义如下：
+```java
+class Parent {
+    public float aFun(float a, float b) {
+    }
+}
+
+class Child extends Parent {
+    // 5.待插入代码的位置
+}
+```
+将以下哪种方法插入行5是不合法的。（`A`）
++ A.`float aFun(float  a,  float  b){ }`
++ B.`public int aFun(int a, int b) { }`
++ C.`public float aFun(float  p,  float q){ }`
++ D.`private int aFun(int a,  int  b){ }`
+
+> 解答：https://www.nowcoder.com/questionTerminal/7d7814b41ded4364aeee6c671233ddb8
+
+方法重写要遵循“两同两小一大”规则，
++ “两同”即方法名相同、形参列表相同
++ “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；
++ “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。并且，覆盖方法和被覆盖方法要么都是类方法，要么都是实例方法，不能一个是类方法一个是实例方法。
+
+A选项是重写，但是默认访问修饰符比父类小，插入第五行编辑器会报错。
+B、D不是重写。因为形参列表和返回值类型不同，不满足“三同”。所以写在第五行以普通方法对待，插入第五行没有错误。
+C选项满足重写的各项条件，是正确的重写，所以插入第五行没有错误。
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
