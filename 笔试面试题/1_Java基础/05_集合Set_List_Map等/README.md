@@ -65,4 +65,16 @@ subset方法是求set的范围内的子集，两个true是表示是否包含端�
 
 HashMap允许一个key为null，多个value为null，而Hashtable不允许有null值
 
+### 3.java中Hashtable, Vector, TreeSet, LinkedList哪些线程是安全的？(`AB`)
++ A.Hashtable
++ B.Vector
++ C.TreeSet
++ D.LinkedList
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777562
+
+参考第1题
+
+
+
 ## 五、问答题

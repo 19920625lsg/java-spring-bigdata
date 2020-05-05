@@ -86,7 +86,18 @@ public class Test {
 
 finally在return之前执行，但是trycatch中的return值是在进finally之前决定地。和上面的题很类似
 
-### 
+### 4.对于Java中异常的描述正确的是（`D`）
++ A.用throws定义了方法可能抛出的异常，那么调用此方法时一定会抛出此异常。
++ B.如果try块中没有抛出异常，finally块中的语句将不会被执行。
++ C.抛出异常意味着程序发生运行时错误，需要调试修改
++ D.Java中的unchecked异常可能来自RuntimeException类或其子类。
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777621
+
++ A错 在调用此方法的时候 也可以再次申明以将异常交由更高一级处理。
++ B错 finally块中的语句一定会被执行。除非catch块中有System.exit(0)。
++ C错 抛出异常不一定是运行时异常，也有可能是编译时异常。
++ D对 运行时异常的特点是Java编译器不会检查它。
 
 ## 四、多选题
 
