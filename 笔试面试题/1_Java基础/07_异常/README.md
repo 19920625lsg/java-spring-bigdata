@@ -99,6 +99,47 @@ finally在return之前执行，但是trycatch中的return值是在进finally之�
 + C错 抛出异常不一定是运行时异常，也有可能是编译时异常。
 + D对 运行时异常的特点是Java编译器不会检查它。
 
+### 5.如下代码的输出是(`B`)
+```java
+public class Test {
+    private static void test(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            try {
+                if (arr[i] % 2 == 0) {
+                    throw new NullPointerException();
+                } else {
+                    System.out.print(i);
+                }
+            } finally {
+                System.out.print("e");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            test(new int[]{0, 1, 2, 3, 4, 5});
+        } catch (Exception e) {
+            System.out.print("E");
+        }
+    }
+}
+```
+
++ A.编译出错
++ B.eE
++ C.Ee
++ D.eE1eE3eE5
++ E.Ee1Ee3Ee5
+
+> 问题解答：
+
+由于arr[0] =0,所以在进入 test()方法里面会在第一个if 上抛出一个 NullPointerException,接着会执行 finally 的语句, (finally语句先于 return 和 throw语句执行)，输出一个'e，然后回到 main方法中，由于捕捉到异常，所以进入到catch语句中，然后打印一个'E',所以最终结果为"eE"
+
+这题主要是2点:
++ 1.finally中的语句一定会执行。 
++ 2.是catch捕获到异常后程序结束
+
 ## 四、多选题
 ### 1.有关finally语句块说法正确的是（`ABC`）
 + A.不管catch是否捕获异常，finally语句块都是要被执行的
@@ -215,5 +256,20 @@ finally在return之前执行，但是trycatch中的return值是在进finally之�
 + 1.任何执行try 或者catch中的return语句之前，如果finally存在的话,都会先执行finally语句，
 + 2.如果finally中有return语句，那么程序就return了，所以finally中的return是一定会被return的，编译器把finally中的return实现为一个warning。
 + 3.如果finally中无return语句，而try或catch中与return语句，则会在try或catch中把要return的值先计算好，待finally执行完毕，再返回之前计算好的return值(即使finally中对返回值有修改也不会生效)
+
+### 2.下面有关 JAVA 异常类的描述,说法正确的有(`ABC`)
++ A.异常的继承结构:基类为 Throwable,Error 和 Exception 实现 Throwable,RuntimeException 和 IOException 等继承 Exception
++ B.非 RuntimeException 一般是外部错误(不考虑Error的情况下),其必须在当前类被 try{}catch 语句块所捕获
++ C.Error 类体系描述了 Java 运行系统中的内部错误以及资源耗尽的情形,Error 不需要捕捉
++ D.RuntimeException 体系包括错误的类型转换、数组越界访问和试图访问空指针等等,必须 被 try{}catch 语句块所捕获
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5234921
+
+![异常的体系结构2](images/异常的体系结构2.png)
+都是Throwable的子类：
++ 1.Exception（异常） :是程序本身可以处理的异常。
++ 2.Error（错误）: 是程序无法处理的错误。这些错误表示故障发生于虚拟机自身、或者发生在虚拟机试图执行应用时，一般不需要程序处理。
++ 3.检查异常（编译器要求必须处置的异常） ：  除了Error，RuntimeException及其子类以外，其他的Exception类及其子类都属于可查异常。这种异常的特点是Java编译器会检查它，也就是说，当程序中可能出现这类异常，要么用try-catch语句捕获它，要么用throws子句声明抛出它，否则编译不会通过
++ 4.非检查异常(编译器不要求处置的异常): 包括运行时异常（RuntimeException与其子类）和错误（Error）
 
 ## 五、问答题

@@ -13,6 +13,30 @@
 
 > 这里的'中'应该是不管用什么编码方式存储，赋值给char变量后都会先转换成对应的unicode的序号\u4e2d,（知道了项目原编码方式，以及某个字符，然后按对应规则转--见下文a）之后再用UTF-16BE来作为\u4e2d这个字符编码的存储方案。
 
+### 2.我们在程序中经常使用“System.out.println()”来输出信息，语句中的System是包名，out是类名，println是方法名。(`B`)
++ A.对
++ B.错
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5248881
+
+System是java.lang中的一个类，out是System内的一个成员变量，这个变量是一个java.io.PrintStream类的对象，println呢就是一个方法了。
+
+## 三、单选题
+
+### 1.以下哪一个不是赋值符号？（`C`）
++ A.`+=`
++ B.`<<=`
++ C.`<<<=`
++ D.`>>>=`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777877
+
+C.混合赋值运算符的使用
++ `<<`表示左移位
++ `>>`表示带符号右移位
++ `>>>`表示无符号右移
++ 但是没有`<<<`运算符
+
 ### 2.以下代码的输出的正确结果是(`D`)
 ```java
 public class Test {
@@ -31,23 +55,6 @@ public class Test {
 > 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777626
 
 java的String底层是char数组，它的length()返回数组大小，而unicode中一个汉字是可以用一个char表示的。不管中文字符还是英文字符在Java中都是一个char，在C和C++是不一样地
-
-## 三、单选题
-
-### 1.以下哪一个不是赋值符号？（`C`）
-+ A.`+=`
-+ B.`<<=`
-+ C.`<<<=`
-+ D.`>>>=`
-
-> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777877
-
-C.混合赋值运算符的使用
-+ `<<`表示左移位
-+ `>>`表示带符号右移位
-+ `>>>`表示无符号右移
-+ 但是没有`<<<`运算符
-
 
 ## 四、多选题
 ### 1.已知

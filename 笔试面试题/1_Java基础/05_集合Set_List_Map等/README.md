@@ -43,6 +43,24 @@ subset方法是求set的范围内的子集，两个true是表示是否包含端�
 
 > 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5314135
 
+### 3.在java7中,下列哪个说法是正确的:(`D`)
++ A.ConcurrentHashMap使用synchronized关键字保证线程安全
++ B.HashMap实现了Collection接口
++ C.Arrays.asList方法返回java.util.ArrayList对象
++ D.SimpleDateFormat对象是线程不安全的
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5249137
+
++ A选项：hashMap在单线程中使用大大提高效率，在多线程的情况下使用hashTable来确保安全。hashTable中使用synchronized关键字来实现安全机制，但是synchronized是对整张hash表进行锁定即让线程独享整张hash表，在安全同时造成了浪费。concurrentHashMap采用分段加锁的机制来确保安全，ConcurrentHashMap使用segment来分段和管理锁，segment继承自ReentrantLock，因此ConcurrentHashMap使用ReentrantLock来保证线程安全。
++ B选项：`public class HashMap<K,V> extends AbstractMap <K,V>  implements Map <K,V>, Cloneable , Serializable`
++ C选项：Arrays.asList()将一个数组转化为一个List对象，这个方法返回一个ArrayList类型的对象， 这个ArrayList类并非java.util.ArrayList类，而是Arrays类的静态内部类！用这个对象对列表进行添加删除更新操作，就会报UnsupportedOperationException异常。
++ D选项：
+  ```java
+  public abstract class DateFormat extends Format 
+  public abstract class Format extends Object implements Serializable, Cloneable
+  public class SimpleDateFormat extends DateFormat
+  ```
+  再查其方法api，也没见到说SimpleDateFormat有实现同步的方法。（一般要是一个类是线程同步的，第一句话应该就会说了）
 
 ## 四、多选题
 ### 1.关于java集合下列说法不正确的有哪些（`ABD`）

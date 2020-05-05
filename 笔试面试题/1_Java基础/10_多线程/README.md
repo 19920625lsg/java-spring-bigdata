@@ -5,6 +5,18 @@
 ## 二、判断题
 
 ## 三、单选题
+### 1.以下是java concurrent包下的4个类，选出差别最大的一个（`C`）
++ A.Semaphore
++ B.ReentrantLock
++ C.Future
++ D.CountDownLatch
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5250379
+
++ A、Semaphore：类，控制某个资源可被同时访问的个数;
++ B、ReentrantLock：类，具有与使用synchronized方法和语句所访问的隐式监视器锁相同的一些基本行为和语义，但功能更强大；
++ C、Future：接口，表示异步计算的结果；
++ D、CountDownLatch： 类，可以用来在一个线程中等待多个线程完成任务的类。
 
 ## 四、多选题
 ### 1.下面有关java threadlocal说法正确的有？(`ABCD`)
