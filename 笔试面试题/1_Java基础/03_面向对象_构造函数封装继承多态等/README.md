@@ -225,6 +225,104 @@ class StaticStuff {
   protected访问修饰符也不能使用,因为接口可以让所有的类去实现(非继承),不只是其子类,但是要用public去修饰。接口可以去继承一个已有的接口。
   参考链接：http://www.360doc.com/content/16/0406/21/26211242_548419991.shtml
 
+### 10.假定Base b = new Derived（）; 调用执行b.methodOne（）后，输出结果是什么？(`A`)
+```java
+public class Base {
+    public void methodOne() {
+        System.out.print("A");
+        methodTwo();
+    }
+
+    public void methodTwo() {
+        System.out.print("B");
+    }
+}
+
+public class Derived extends Base {
+    public void methodOne() {
+        super.methodOne();
+        System.out.print("C");
+    }
+
+    public void methodTwo() {
+        super.methodTwo();
+        System.out.print("D");
+    }
+}
+```
++ A.`ABDC`
++ B.`AB`
++ C.`ABCD`
++ D.`ABC`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12741598
+
+简答说就是：`只要是被子类重写的方法，不被super调用都是调用子类方法`
+
+这是一道类多态的向上转型题
+
+向上转型：父类只能调用父类方法或者子类覆写后的方法,而子类中的单独方法则是无法调用的。
+因此：
+调用的顺序是：(1)、(2)、(3)、(4)、(5)、(6)、(7) ; 得到的结果是：ABDC
+
+```java
+class Base
+{ 
+    public void methodOne()  // (3)
+    {
+        System.out.print("A");
+        methodTwo();  // 关键：执行到这里的时候调用子类的覆盖方法 (4)
+    } 
+    
+    public void methodTwo() // (7)
+    {
+        System.out.print("B");
+    }
+} 
+ class Derived extends Base 
+ { 
+     public void methodOne() // (1)
+    { super.methodOne();   // (2)
+        System.out.print("C");
+    } 
+    
+    public void methodTwo()  //该方法为重写了父类的方法 （5）
+    { super.methodTwo(); //(6)
+        System.out.print("D");
+    }
+}
+```
+
+### 11.对于子类的构造函数说明，下列叙述中错误的是（`D`）
++ A.子类不能继承父类的无参构造函数
++ B.子类可以在自己的构造函数中使用super关键字来调用父类的含参数构造函数，但这个调用语句必须是子类构造函数的第一个可执行语句。
++ C.在创建子类的对象时，若不含带参构造函数，将先执行父类的无参构造函数，然后再执行自己的无参构造函数。
++ D.子类不但可以继承父类的无参构造函数，也可以继承父类的有参构造函数
+
+> 解答: https://www.nowcoder.com/profile/934336/myFollowings/detail/12741584
+
+构造函数不能被继承，构造方法只能被显式或隐式的调用
+
+### 12.关于对象成员占用内存的说法哪个正确？（`B`）
++ A.同一个类的对象共用同一段内存
++ B.同一个类的对象使用不同的内存段，但静态成员共享相同的内存空间
++ C.对象的方法不占用内存
++ D.以上都不对
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12741581
+
+当你创建一个新的实例对象时，它会得到一块新的内存空间。但是类中的静态成员变量是所有对象共有的，也就是在一片属于类的存储空间中，被所有对象共有
+
+### 13.多态的表现形式有(`A`)
++ A.重写
++ B.抽象
++ C.继承
++ D.封装
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12741516
+
+继承是根源，重写是表现形式
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final

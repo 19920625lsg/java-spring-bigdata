@@ -49,8 +49,6 @@ C.混合赋值运算符的使用
 + 但是没有`<<<`运算符
 
 
-
-
 ## 四、多选题
 ### 1.已知
 ```java
@@ -98,4 +96,15 @@ String d=new String("ab");
     System.out.println(str1 == str3);//true 
     System.out.println(str2 == str3);//false
     ```
+
+### 2.下列可作为java语言标识符的是（`ABD`）
++ A.a1
++ B.$1
++ C._1
++ D.11
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12741525
+
+Java标识符由数字，字母和下划线（_），美元符号（$）或人民币符号（￥）组成。在Java中是区分大小写的，而且还要求首位不能是数字。最重要的是，Java关键字不能当作Java标识符。
+
 ## 五、问答题
