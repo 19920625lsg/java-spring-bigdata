@@ -71,7 +71,28 @@ JVM内存五大区域：
 
 在java语言中，判断一块内存空间是否符合垃圾收集器收集标准的标准只有两个：
 + 1.给对象赋值为null，以下没有调用过。
-+ 2.给对象赋了新的值，重新分配了内存空间。
++ 2.给对象赋了新的值，重新分配了内存空间
+
+### 3.jvm中垃圾回收分为scanvenge gc和full GC，其中full GC触发的条件可能有哪些（`CDE`）
++ A.栈空间满
++ B.年轻代空间满
++ C.老年代满
++ D.持久代满
++ E.System.gc()
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5366782
+
+![垃圾回收的过程](images/垃圾回收的过程.png)
+
++ 1.新生代：
+  + （1）所有对象创建在新生代的Eden区，当Eden区满后触发新生代的Minor GC，将Eden区和非空闲Survivor区存活的对象复制到另外一个空闲的Survivor区中。
+  + （2）保证一个Survivor区是空的，新生代Minor GC就是在两个Survivor区之间相互复制存活对象，直到Survivor区满为止。
++ 2.老年代：
+    当Survivor区也满了之后就通过Minor GC将对象复制到老年代。老年代也满了的话，就将触发Full GC，针对整个堆（包括新生代、老年代、持久代）进行垃圾回收。
++ 3.持久代：
+    持久代如果满了，将触发Full GC
+
+
 
 ## 五、问答题
 
