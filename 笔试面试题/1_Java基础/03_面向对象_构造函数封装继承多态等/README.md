@@ -45,6 +45,32 @@
 + 接口中字段的修饰符：public static final（默认不写）
 + 接口中方法的修饰符：public abstract（默认不写）
 
-### 2.
+### 2.观察以下代码：
+```java
+class Car extends Vehicle {
+    public static void main(String[] args) {
+        new Car().run();
+    }
+
+    private final void run() {
+        System.out.println("Car");
+    }
+}
+
+class Vehicle {
+    private final void run() {
+        System.out.println("Vehicle");
+    }
+}
+```
+下列哪些针对代码运行结果的描述是正确的？(`A`)
++ A.Car
++ B.Vehicle
++ C.Compiler error at line 3
++ D.Compiler error at line 5
++ E.Exception thrown at runtime
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779857
+首先final声明的方法是不能被覆盖的，但是这里并不错误，因为方法是private的，也就是子类没有继承父类的run方法，因此子类的run方法跟父类的run方法无关，并不是覆盖。new Car().run()也是调用子类的run方法。
 
 ## 问答题
