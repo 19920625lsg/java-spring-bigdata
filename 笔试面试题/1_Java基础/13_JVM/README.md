@@ -5,6 +5,16 @@
 ## 判断题
 
 ## 单选题
+### 1.JVM内存不包含如下哪个部分(`D`)
++ A.Stacks
++ B.PC寄存器
++ C.Heap
++ D.Heap Frame
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779837
+
+JVM内存五大区域：
+![JVM内存五大区域](images/JVM内存五大区域.png)
 
 ## 多选题
 ### 1.关于运行时常量池，下列哪个说法是正确的？(`BCD`)
