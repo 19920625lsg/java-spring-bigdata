@@ -140,6 +140,38 @@ public class Test {
 + 1.finally中的语句一定会执行。 
 + 2.是catch捕获到异常后程序结束
 
+### 6.执行下列代码的输出结果是(`C`)
+```java
+public class Demo{
+　public static void main(String args[]){
+　　　int num = 10;
+　　　System.out.println(test(num));
+}
+public static int test(int b){
+　　　try
+　　　{
+　　　　b += 10;
+　　　　return b;
+　　　}
+　　　catch(RuntimeException e)
+　　　{
+　　　}
+　　　catch(Exception e2)
+　　　{
+　　　}
+　　　finally
+　　　{
+　　　　b += 10;
+　　　　return b;
+　　　}
+　　}
+}
+```
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5234912
+
+finally里面有return就以其为准
+
 ## 四、多选题
 ### 1.有关finally语句块说法正确的是（`ABC`）
 + A.不管catch是否捕获异常，finally语句块都是要被执行的

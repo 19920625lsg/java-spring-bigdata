@@ -351,6 +351,46 @@ A选项是重写，但是默认访问修饰符比父类小，插入第五行编�
 B、D不是重写。因为形参列表和返回值类型不同，不满足“三同”。所以写在第五行以普通方法对待，插入第五行没有错误。
 C选项满足重写的各项条件，是正确的重写，所以插入第五行没有错误。
 
+### 15.程序的输出结果(`D`)
+```java
+class Base {
+    public void method() {
+        System.out.println("Base");
+    }
+}
+
+class Son extends Base {
+    public void method() {
+        System.out.println("Son");
+    }
+
+    public void methodB() {
+        System.out.println("SonB");
+    }
+}
+
+public class Test01 {
+    public static void main(String[] args) {
+        Base base = new Son(); // 已经转成子类对象了，没有methodB()了
+        base.method();
+        base.methodB();
+    }
+}
+```
+
++ A.Base SonB
++ B.Son SonB
++ C.Base Son SonB
++ D.编译不通过
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5234918
+
+```java
+Base base = new Son();  // 这句new 了一个派生类，赋值给基类，所以下面的操作编译器认为base对象就是Base类型的Base类中不存在methodB()方法，所以编译不通过
+```
+这类多态问题中，无论向上或向下转型，都记住一句话就可以了。
+`编译看左边，运行看右边`。意思编译时候，看左边有没有该方法，运行的时候结果看 new 的对象是谁，就调用的谁。
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
@@ -593,39 +633,17 @@ public class Base {
 + A选项：实例化的时候才是这么调用地~在类中不能这么用，只能像D一样用this
 + B选项：可以使用逗号的是变量初始化的语句，比如`int i=1,b=2;`如果是赋值语句，不能用逗号分隔。
 
-### 10.程序的输出结果(`D`)
-```java
-class Base {
-    public void method() {
-        System.out.println("Base");
-    }
-}
+### 10.下列选项中是正确的方法声明的是？（`ABCD`）
++ A.`protected abstract void f1();`
++ B.`public final void f1() {}`
++ C.`static final void fq(){}`
++ D.`private void f1() {}`
 
-class Son extends Base {
-    public void method() {
-        System.out.println("Son");
-    }
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4010367
 
-    public void methodB() {
-        System.out.println("SonB");
-    }
-}
-
-public class Test01 {
-    public static void main(String[] args) {
-        Base base = new Son(); // 已经转成子类对象了，没有methodB()了
-        base.method();
-        base.methodB();
-    }
-}
-```
-
-> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/5234918
-
-```java
-Base base = new Son();  // 这句new 了一个派生类，赋值给基类，所以下面的操作编译器认为base对象就是Base类型的Base类中不存在methodB()方法，所以编译不通过
-```
-这类多态问题中，无论向上或向下转型，都记住一句话就可以了。
-`编译看左边，运行看右边`。意思编译时候，看左边有没有该方法，运行的时候结果看 new 的对象是谁，就调用的谁。
++ A：抽象方法只可以被public 和 protected修饰；
++ B：final可以修饰类、方法、变量，分别表示：该类不可继承、该方法不能重写、该变量是常量
++ C：static final 可以表达在一起来修饰方法，表示是该方法是静态的不可重写的方法
++ D：private 修饰方法（这太常见的）表示私有方法，本类可以访问，外界不能访问
 
 ## 五、问答题

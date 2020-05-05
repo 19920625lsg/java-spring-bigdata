@@ -21,6 +21,23 @@
 
 System是java.lang中的一个类，out是System内的一个成员变量，这个变量是一个java.io.PrintStream类的对象，println呢就是一个方法了。
 
+### 3.以下选项中，合法的赋值语句是（`B`）
++ A.`a>1;`
++ B.`i++;`
++ C.`a= a+1=5;`
++ D.`y = int ( i );`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4010357
+
+B项，中间变量缓存机制。
+等同于
+```java
+temp = i;
+i=i+1;
+i=temp;
+```
+D:`(int)i`不是 `int(i)`
+
 ## 三、单选题
 
 ### 1.以下哪一个不是赋值符号？（`C`）
@@ -55,6 +72,19 @@ public class Test {
 > 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777626
 
 java的String底层是char数组，它的length()返回数组大小，而unicode中一个汉字是可以用一个char表示的。不管中文字符还是英文字符在Java中都是一个char，在C和C++是不一样地
+
+### 3.下面代码在main()方法中第八行后可以正常使用的是（`AD`）
++ A.t.a
++ B.this.c
++ C.Test.b
++ D.Test.c
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/4361022
+
++ A、在private  修饰不能在外部类中调用，main 方法属于Test类的方法， 所以 对象 t 可以在他自己的类方法中调用它的private
++ B、static方法中不能用this
++ C、b是非静态成员变量，只能用实例引用
++ D、正确
 
 ## 四、多选题
 ### 1.已知
