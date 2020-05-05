@@ -55,6 +55,14 @@ subset方法是求set的范围内的子集，两个true是表示是否包含端�
   + TreeSet
   + StringBulider
 
-##
+## 2.关于HashMap类的描述，以下正确的是(`ACD`)
++ A.HashMap使用键/值得形式保存数据
++ B.HashMap 能够保证其中元素的顺序
++ C.HashMap允许将null用作键
++ D.HashMap允许将null用作值
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777658
+
+HashMap允许一个key为null，多个value为null，而Hashtable不允许有null值
 
 ## 五、问答题

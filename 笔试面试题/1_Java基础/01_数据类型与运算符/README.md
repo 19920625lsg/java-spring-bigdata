@@ -13,6 +13,24 @@
 
 > 这里的'中'应该是不管用什么编码方式存储，赋值给char变量后都会先转换成对应的unicode的序号\u4e2d,（知道了项目原编码方式，以及某个字符，然后按对应规则转--见下文a）之后再用UTF-16BE来作为\u4e2d这个字符编码的存储方案。
 
+### 2.以下代码的输出的正确结果是(`D`)
+```java
+public class Test {
+    public static void main(String[] args) {
+        String s = "祝你考出好成绩！";
+        System.out.println(s.length());
+    }
+}
+```
+
++ A.24
++ B.16
++ C.15
++ D.8
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777626
+
+java的String底层是char数组，它的length()返回数组大小，而unicode中一个汉字是可以用一个char表示的。不管中文字符还是英文字符在Java中都是一个char，在C和C++是不一样地
 
 ## 三、单选题
 
