@@ -34,7 +34,21 @@ JVM内存五大区域：
 + C、没毛病吧
 + D、OOM和内存泄露都还是有得,访问资源文件，流不关闭，访问数据库等连接不关闭也是
   + 1. OOM，内存溢出，是说原来得内存不够用了
-  + 2. 内存泄漏，说得一个对象没用了，但是不能被回收。
+  + 2. 内存泄漏，说得一个对象没用了，但是不能被回收
+
+### 3.关于java编译和运行命令叙述不正确的是？  (`A`)
++ A.运行“java Scut.class”
++ B.运行“java Scut”
++ C.运行“javac Scut.java”的输出文件是Scut.class
++ D.java这个命令的运行对象是Scut.class
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779605
+
++ A  错误 运行命令是 java + 你的 Java 程序的名字但是不加后缀 所以这道题错在多了 .class这个后缀
++ B  正确
++ C  javac 是编译命令，后跟 你的 Java 程序名字加后缀，也就是 YourClassName.java 所以答案正确
++ D JVM （Java 虚拟机）运行的是编译后的字节码文件（以.class为后缀的文件），也就是 YourClassName.class 所以答案正确
+个人的一点看法，有问题还请指出，谢谢
 
 ## 四、多选题
 ### 1.关于运行时常量池，下列哪个说法是正确的？(`BCD`)
