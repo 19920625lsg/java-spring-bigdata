@@ -5,6 +5,33 @@
 ## 二、判断题
 
 ## 三、单选题
+### 1.以下程序的运行结果是：(`C`)
++ 编译失败
++ 发生运行时异常
++ [606, 608, 610, 612, 629] [608, 610]
++ [606, 608, 610, 612, 629] [608, 610,629]
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12778238
+
+```java
+class StaticStuff {
+    public static void main(String[] args) {
+        TreeSet<Integer> set = new TreeSet<Integer>();
+        TreeSet<Integer> subSet = new TreeSet<Integer>();
+        for (int i = 606; i < 613; i++) {
+            if (i % 2 == 0) {
+                if (i % 2 == 0) {
+                    set.add(i);
+                }
+            }
+            subSet = (TreeSet) set.subSet(608, true, 611, true);  //此时的subSet的值为[606,608,610,612] set.add(629);
+            System.out.println(set + " " + subSet);
+        }
+    }
+}
+```
+
+subset方法是求set的范围内的子集，两个true是表示是否包含端点（608和611），故subSet的值为[608,610]
 
 ## 四、多选题
 ### 1.关于java集合下列说法不正确的有哪些（`ABD`）
@@ -27,5 +54,7 @@
   + TreeMap
   + TreeSet
   + StringBulider
+
+##
 
 ## 五、问答题

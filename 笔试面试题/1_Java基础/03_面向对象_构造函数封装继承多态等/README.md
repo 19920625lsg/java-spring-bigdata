@@ -333,4 +333,44 @@ public class Test {
 
 题目的四个选项是构造方法new，序列化对象，反射，克隆分别创建一个对象的方法，，只有new和反射用到了构造方法。readObject方法只是从文件中还原对象(在设计模式中的序列化模式中用到了)，clone只是一种复制拷贝对象
 
+### 5.在使用super和this关键字时，以下描述错误的是（`BCD`）
++ A.在子类构造方法中使用super()显示调用父类的构造方法，super()必须写在子类构造方法的第一行，否则编译不通过
++ B.super()和this()不一定要放在构造方法内第一行
++ C.this()和super()可以同时出现在一个构造函数中
++ D.this()和super()可以在static环境中使用，包括static方法和static语句块
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777882
+
+super和this都只能位于构造器的第一行，而且不能同时使用，这是因为会造成初始化两次，this用于调用重载的构造器，super用于调用父类被子类重写的方法
+
+### 6.关于下列代码的执行顺序，
+```java
+public class HelloA {
+    public HelloA() {
+        System.out.println("A的构造函数");
+    }
+
+    {
+        System.out.println("A的构造代码块");
+    }
+
+    static {
+        System.out.println("A的静态代码块");
+    }
+
+    public static void main(String[] args) {
+        HelloA a = new HelloA();
+    }
+}
+```
+下面描述正确的有哪些选项(`ABC`)
++ A.打印顺序A的静态代码块> A的构造函数
++ B.打印顺序A的静态代码块> A的构造代码块
++ C.打印顺序A的构造代码块> A的构造函数
++ D.打印顺序A的构造函数> A的构造代码块
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12777880
+
+参考第3题。顺序应该是：A的静态代码块==》A的构造代码块==》A的构造函数
+
 ## 五、问答题
