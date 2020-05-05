@@ -154,4 +154,104 @@ class Vehicle {
 > 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779857
 首先final声明的方法是不能被覆盖的，但是这里并不错误，因为方法是private的，也就是子类没有继承父类的run方法，因此子类的run方法跟父类的run方法无关，并不是覆盖。new Car().run()也是调用子类的run方法。
 
+### 3.有关静态初始化块说法正确的是？（`ABC`）
++ A.无法直接调用静态初始化块
++ B.在创建第一个实例前或引用任何静态成员之前，将自动调用静态初始化块来初始化
++ C.静态初始化块既没有访问修饰符，也没有参数
++ D.在程序中，用户可以控制合适执行静态初始化块
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/12779623
+
+java对象初始化顺序
+先说结论：
++ 1.父类静态代码块，父类静态成员变量（同级，按代码顺序执行）
++ 2.子类静态代码块，子类静态成员变量（同级，按代码顺序执行）
++ 3.父类普通代码块，父类普通成员变量（同级，按代码顺序执行）
++ 4.父类构造方法
++ 5.子类普通代码块，子类普通成员变量（同级，按代码顺序执行）
++ 6.子类构造方法
+
+注意点：
+
++ 1.静态成员和静态代码块只有在类加载的时候执行一次，再次创建实例时，不再执行，因为只在方法区存在一份，属于一整个类
++ 默认调用父类的无参构造方法，可以在子类构造方法中利用super指定调用父类的哪个构造方法。
+
+代码测试：
+```java
+/**
+ * Description: Java对象初始化顺序
+ * Created by yangyz on 2018/12/25
+ */
+class Father {
+    public Father() {
+        System.out.println("父类无参构造方法");
+    }
+    static {
+        System.out.println("父类静态代码块1");
+    }
+    private static int a = Help.fatherStaticMemberVarInit();
+    static {
+        System.out.println("父类静态代码块2");
+    }
+    {
+        System.out.println("父类普通代码块1");
+    }
+    private int b = Help.fatherMemberVarInit();
+    {
+        System.out.println("父类普通代码块2");
+    }
+    public Father(int v) {
+        System.out.println("父类带参构造方法");
+    }
+}
+ 
+class Son extends Father {
+    static {
+        System.out.println("子类静态代码块1");
+    }
+    private static int a = Help.sonStaticMemberVarInit();
+    static {
+        System.out.println("子类静态代码块2");
+    }
+    {
+        System.out.println("子类普通代码块1");
+    }
+    private int b = Help.sonMemberVarInit();
+    {
+        System.out.println("子类普通代码块2");
+    }
+    public Son() {
+        // super(2018);
+        System.out.println("子类构造方法");
+    }
+}
+ 
+class Help {
+    public static int fatherStaticMemberVarInit() {
+        System.out.println("父类静态成员变量");
+        return 0;
+    }
+    public static int fatherMemberVarInit() {
+        System.out.println("父类普通成员变量");
+        return 0;
+    }
+    public static int sonStaticMemberVarInit() {
+        System.out.println("子类静态成员变量");
+        return 0;
+    }
+    public static int sonMemberVarInit() {
+        System.out.println("子类普通成员变量");
+        return 0;
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Son son1 = new Son();
+        System.out.println("===================");
+        Son son2 = new Son();
+    }
+}
+```
+
 ## 五、问答题
