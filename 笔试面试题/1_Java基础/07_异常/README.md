@@ -1,10 +1,10 @@
 # 07_异常
 
-## 填空题
+## 一、填空题
 
-## 判断题
+## 二、判断题
 
-## 单选题
+## 三、单选题
 ### 1.以下对异常的描述不正确的有（`C`）
 > 这个题目的异常包含了Error和Exception
 + A.异常分为Error和Exception
@@ -55,6 +55,6 @@ public class Demo {
 + finally在return之前执行，但是trycatch中的return值是在进finally之前决定地
 + finally在return之前执行，但是如果finally使用了return或者throw语句，将会使trycatch中的return或者throw失效
 
-## 多选题
+## 四、多选题
 
-## 问答题
+## 五、问答题
