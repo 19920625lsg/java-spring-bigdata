@@ -221,6 +221,26 @@ public void second(Value tmp,int i){
 
 Math.cos为计算弧度的余弦值，Math.toRadians函数讲角度转换为弧度
 
+### 8.有以下代码片段：
+```java
+String str1="hello";
+String str2="he"+ new String("llo");
+System.out.println(str1==str2);
+```
+请问输出的结果是：（`D`）
++ A.true
++ B.都不对
++ C.null
++ D.false
+
+> 解答：
+
++ `String str1 = "hello";`这里的str1指的是方法区中的字符串常量池中的“hello”，编译时期就知道的；
++ `String str2 = "he" + new String("llo");`这里的str2必须在运行时才知道str2是什么，所以它是指向的是堆里定义的字符串“hello”，所以这两个引用是不一样的。
+  > 如果用str1.equal(str2)，那么返回的是true；因为String类重写了equals()方法。
+    编译器没那么智能,它不知道"he" + new String("llo")的内容是什么,所以才不敢贸然把"hello"这个对象的引用赋给str2.
+    如果语句改为:"he"+"llo"这样就是true了。
+
 ## 四、多选题
 ### 1.已知
 ```java
