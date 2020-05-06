@@ -391,6 +391,46 @@ Base base = new Son();  // 这句new 了一个派生类，赋值给基类，所�
 这类多态问题中，无论向上或向下转型，都记住一句话就可以了。
 `编译看左边，运行看右边`。意思编译时候，看左边有没有该方法，运行的时候结果看 new 的对象是谁，就调用的谁。
 
+### 16.关于访问权限，说法正确的是？ (`A`)
++ A.类A和类B在同一包中，类B有个protected的方法testB，类A不是类B的子类（或子类的子类），类A可以访问类B的方法testB
++ B.类A和类B在同一包中，类B有个protected的方法testB，类A不是类B的子类（或子类的子类），类A不可以访问类B的方法testB
++ C.访问权限大小范围：public > 包权限 > protected > private
++ D.访问权限大小范围：public > 包权限 > private > protected
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793711
+
++ C: public>protected>default>private老生常谈了
+
+详细分析见下面的表
+
+| 修饰符    | 类内部 | 同一个包 | 子类 | 任何地方 |
+| --------- | ------ | -------- | ---- | -------- |
+| private   | Yes    |          |      |          |
+| default   | Yes    | Yes      |      |          |
+| protected | Yes    | Yes      | Yes  |          |
+| public    | Yes    | Yes      | Yes  | Yes      |
+
+### 17.关于以下程序代码的说明正确的（`D`）
+```java
+class HasStatic{
+    private static int x = 100;
+    public static void main(String args[ ]){
+        HasStatic hs1 = new HasStatic();
+        hs1.x++;
+        HasStatic hs2 = new HasStatic();
+        hs2.x++;
+        hs1=new HasStatic();
+        hs1.x++;
+        HasStatic.x--;
+        System.out.println( "x=" +x);
+    }
+}
+```
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793327
+
+静态类变量既可以用类名访问，也可以用实例名访问
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
