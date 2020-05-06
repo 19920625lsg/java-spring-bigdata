@@ -279,4 +279,58 @@ volatile只提供了保证访问该变量时，每次都是从内存中读取最
 由于及时更新，很可能导致另一线程访问最新变量值，无法跳出循环的情况
 多线程下计数器必须使用锁保护。
 
+### 10.下列说法正确的是（`BD`）？
++ A.我们直接调用Thread对象的run方法会报异常，所以我们应该使用start方法来开启一个线程
++ B.一个进程是一个独立的运行环境，可以被看做一个程序或者一个应用。而线程是在进程中执行的一个任务。Java运行环境是一个包含了不同的类和程序的单一进程。线程可以被称为轻量级进程。线程需要较少的资源来创建和驻留在进程中，并且可以共享进程中的资源
++ C.synchronized可以解决可见性问题，volatile可以解决原子性问题
++ D.ThreadLocal用于创建线程的本地变量，该变量是线程之间不共享的
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513823
+
+记住一句话，synchronized很强大，既可以保证可见性，又可以保证原子性，而volatile不能保证原子性！
+
+扩展：volatile与synchronized的区别：
++ volatile本质是在告诉jvm当前变量在寄存器中的值是不确定的,需要从主存中读取,synchronized则是锁定当前变量,只有当前线程可以访问该变量,其他线程被阻塞住.
++ volatile仅能使用在变量级别,synchronized则可以使用在变量、方法.
++ volatile仅能实现变量的修改可见性,但不具备原子特性,而synchronized则可以保证变量的修改可见性和原子性.
++ volatile不会造成线程的阻塞,而synchronized可能会造成线程的阻塞.
++ volatile标记的变量不会被编译器优化,而synchronized标记的变量可以被编译器优化.
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513777
+
+这题有两个错误的地方，
++ 第一个错误是 wait() 方法要以 try/catch 包覆，或是抛出InterruptedException才行。因此答案就是因为缺少例外捕捉的   InterruptedException
++ 第二个错误的地方是， synchronized 的目标与 wait() 方法的物件不相同，会有 IllegalMonitorStateException ，不过 InterruptedException 会先出现，所以这不是答案
+  最后正确的代码应该是这样：  
+    ```java
+    void waitForSignal() {
+        Object obj = new Object();
+        synchronized (obj) {
+            try {
+                obj.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            obj.notify();
+        }
+    }
+    ```
+
+### 11.Which statement is true?
+```java
+void waitForSignal(){
+    Object obj = new Object();
+    synchronized(Thread.currentThread()){
+        obj.wait();
+        obj.notify();
+    }
+}
+```
+
++ A.This code may throw an InterruptedException
++ B.This code may throw an IllegalStateException
++ C.This code may throw a TimeOutException after ten minutes
++ D.This code will not compile unless”obj.wait()”is replaced with”(Thread)obj).wait()”
++ E.Reversing the order of obj.wait()and obj.notify()may cause this method to complete normally
+
 ## 五、问答题

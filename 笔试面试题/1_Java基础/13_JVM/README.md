@@ -93,6 +93,35 @@ JVM在判定两个class是否相同时，不仅要判断两个类名是否相同
 classloader 加载类用的是全盘负责委托机制。 什么是双亲委派机制？当某个类加载器需要加载某个.class文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。
 所以，当我们自定义的classloader加载成功了 com.company.MyClass以后，MyClass里所有依赖的class都由这个classLoader来加载完成。
 
+### 7.假定str0,...,str4后序代码都是只读引用。Java 7中，以上述代码为基础，在发生过一次FullGC后，上述代码在Heap空间（不包括PermGen）保留的字符数为（`C`）
+```java
+static String str0="0123456789";
+static String str1="0123456789";
+String str2=str1.substring(5);
+String str3=new String(str2);
+String str4=new String(str3.toCharArray());
+str0=null;
+```
++ A.5
++ B.10
++ C.15
++ D.20
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513517
+
+substring实际是new，5字符；str3和4也都是new，每个5字符，分别都会创建新的对象；常量池是PermGen的，因此应该是一共15字符
+
+这是一个关于java的垃圾回收机制的题目。垃圾回收主要针对的是堆区的回收，因为栈区的内存是随着线程而释放的。堆区分为三个区：年轻代（Young Generation）、年老代（Old Generation）、永久代（Permanent Generation，也就是方法区）。
+
++ 年轻代：对象被创建时（new）的对象通常被放在Young（除了一些占据内存比较大的对象）,经过一定的Minor GC（针对年轻代的内存回收）还活着的对象会被移动到年老代（一些具体的移动细节省略）。
++ 年老代：就是上述年轻代移动过来的和一些比较大的对象。Minor GC(FullGC)是针对年老代的回收
++ 永久代：存储的是final常量，static变量，常量池。
+
+str3,str4都是直接new的对象，而substring的源代码其实也是new一个string对象返回，如下图：
+
+
+经过fullgc之后，年老区的内存回收，则年轻区的占了15个，不算PermGen。所以答案选C
+
 ## 四、多选题
 ### 1.关于运行时常量池，下列哪个说法是正确的？(`BCD`)
 + 运行时常量池大小受栈区大小的影响

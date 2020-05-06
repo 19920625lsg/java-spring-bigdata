@@ -623,6 +623,31 @@ I'm B class
 正确答案：C
 ```
 
+### 24.以下程序的输出结果为(`D`)
+```java
+class Base{
+    public Base(String s){
+        System.out.print("B");
+    }
+}
+public class Derived extends Base{
+    public Derived (String s) {
+        System.out.print("D");
+    }
+    public static void main(String[] args){
+        new Derived("C");
+    }
+}
+```
+
+子类构造方法在调用时必须先调用父类的，由于父类没有无参构造，必须在子类中显式调用，修改子类构造方法如下即可：
+```java
+public Derived(String s){
+    super("s");
+    System.out.print("D");
+}
+```
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
@@ -996,4 +1021,54 @@ float占4个字节为什么比long占8个字节大呢，因为底层的实现方
 + C、抽象类和接口类的无法实例化，任何编译器中直接使用new会报错
 + D、同A，单继承，多实现
 
+### 16.关于继承和实现说法正确的 是 ？ (`A`)
++ A.类可以实现多个接口，接口可以继承（或扩展）多个接口
++ B.类可以实现多个接口，接口不能继承（或扩展）多个接口
++ C.类和接口都可以实现多个接口
++ D.类和接口都不可以实现多个接口 // 接口和接口间的关系叫继承
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513811
+
++ 1.类与类之间的关系为继承，只能单继承，但可以多层继承
++ 2.类与接口之间的关系为实现，既可以单实现，也可以多实现
++ 3.接口与接口之间的关系为继承，既可以单继承，也可以多继承
+
+### 17.下面哪些类可以被继承？ Java.lang.Thread、java.lang.Number、java.lang.Double、java.lang.Math、 java.lang.ClassLoader(`ABE`)
++ A.Thread
++ B.Number
++ C.Double
++ D.Math
++ E.ClassLoader
+
+> 解读：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513682
+
++ A，Thread可以被继承，用于创建新的线程
++ B，Number类可以被继承，Integer，Float，Double等都继承自Number类
++ C，Double类的声明为`public final class Doubleextends Numberimplements Comparable<Double>`,  final声明的类不能被继承
++ D，Math类的声明为`public final class Mathextends Object`不能被继承
++ E，ClassLoader可以被继承，用户可以自定义类加载器
+
+### 18.jdk1.8中，下面有关java 抽象类和接口的区别，说法错误的是？(`BD`)
++ A.抽象类可以有构造方法，接口中不能有构造方法
++ B.抽象类中可以包含非抽象的普通方法，接口中的方法必须是抽象的，不能有非抽象的普通方法
++ C.一个类可以实现多个接口，但只能继承一个抽象类
++ D.接口中可以有普通成员变量，抽象类中没有普通成员变量
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513537
+
++ 抽象类特点:
+  + 1.抽象类中可以构造方法
+  + 2.抽象类中可以存在普通属性，方法，静态属性和方法。
+  + 3.抽象类中可以存在抽象方法。
+  + 4.如果一个类中有一个抽象方法，那么当前类一定是抽象类；抽象类中不一定有抽象方法。
+  + 5.抽象类中的抽象方法，需要有子类实现，如果子类不实现，则子类也需要定义为抽象的。
++ 接口
+  + 1.在接口中只有方法的声明，没有方法体。
+  + 2.在接口中只有常量，因为定义的变量，在编译的时候都会默认加上
+  + public static final 
+  + 3.在接口中的方法，永远都被public来修饰。
+  + 4.接口中没有构造方法，也不能实例化接口的对象。
+  + 5.接口可以实现多继承
+  + 6.接口中定义的方法都需要有实现类来实现，如果实现类不能实现接口中的所有方法
+  + 7.则实现类定义为抽象类
 ## 五、问答题
