@@ -522,4 +522,17 @@ Long u=new Long(9);
 + C 是正确的。Java虚拟机中通常使用UTF-16的方式保存一个字符
 + D 也是正确的。ResourceBundle能够依据Local的不同，选择性的读取与Local对应后缀的properties文件，以达到国际化的目的。
 
+### 7.下面哪些赋值语句是正确的（`ABD`）
++ A.`long test=012`
++ B.`float f=-412`
++ C.`int other =(int)true`
++ D.`double d=0x12345678`
++ E.`byte b=128`
+
+> 解答：
++ A和B中long和float，正常定义需要加l和f，但是long和float属于基本类型，会进行转化，所以不会报出异常。AB正确
++ C错：boolean类型不能和任何类型进行转换，会报出类型异常错误。
++ D选项可以这样定义，D正确。
++ E选项中，byte的取值范围是-128—127。报出异常： cannot convert from int to byte.所以E选项错误。
+
 ## 五、问答题

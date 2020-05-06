@@ -507,6 +507,122 @@ new Sub();在创造派生类的过程中首先创建基类对象，然后才能�
 
 选C，父类没有无参的构造函数，所以子类需要在自己的构造函数中显式调用父类的构造函数，添加super("nm");否则报错
 
+### 22.如果一个接口Cow有个方法drink()，有个类Calf实现接口Cow，则在类Calf中正确的是？  (`C`)
++ A.`void drink() { …}`
++ B.`protected void drink() { …}`
++ C.`public void drink() { …}`
++ D.以上语句都可以用在类Calf中
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3523999
+
+子类重写父类方法时，方法的访问权限不能小于原访问权限，在接口中，方法的默认权限就是public，所以子类重写后只能是public
+
+### 23.下面代码的输出结果是：(`C`)
+
+```java
+public class HelloB extends HelloA {
+    public HelloB() {
+    }
+
+    {
+        System.out.println("I’m B class");
+    }
+
+    static {
+        System.out.println("static B");
+    }
+
+    public static void main(String[] args) {
+        new HelloB();
+    }
+}
+
+class HelloA {
+    public HelloA() {
+    }
+
+    {
+        System.out.println("I’m A class");
+    }
+
+    static {
+        System.out.println("static A");
+    }
+}
+```
+
++ A.
+    ```shell
+    static A
+    I’m A class
+    static B
+    I’m B class
+    ```
++ B.
+    ```shell
+    I’m A class
+    I’m B class
+    static A
+    static B
+    ```
++ C.
+    ```shell
+    static A
+    static B
+    I’m A class
+    I’m B class
+    ```
++ D.
+    ```shell
+    I’m A class
+    static A
+    I’m B class
+    static B
+    ```
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513983
+
+参考第1题：
+```java
+其中涉及：静态初始化代码块、构造代码块、构造方法
+当涉及到继承时，按照如下顺序执行：
+1、执行父类的静态代码块
+static {
+        System.out.println("static A");
+    }
+输出:static A
+2、执行子类的静态代码块
+static {
+        System.out.println("static B");
+    }
+输出:static B
+3、执行父类的构造代码块
+{
+        System.out.println("I’m A class");
+    }
+输出:I'm A class
+4、执行父类的构造函数
+public HelloA() {
+    }
+输出：无
+5、执行子类的构造代码块
+{
+        System.out.println("I’m B class");
+    }
+输出:I'm B class
+6、执行子类的构造函数
+public HelloB() {
+    }
+输出：无
+
+那么，最后的输出为：
+static A
+static B
+I'm A class
+I'm B class
+正确答案：C
+```
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
@@ -866,5 +982,18 @@ float占4个字节为什么比long占8个字节大呢，因为底层的实现方
 然后按照公式： V=(-1)^s * M * 2^E
 也就是说浮点数在内存中的32位不是简单地转换为十进制，而是通过公式来计算而来，通过这个公式虽然，只有4个字节，但浮点数最大值要比长整型的范围要大
 + D：double → float 没有强制转换，错误。
+
+### 15.下列描述错误的是?(`BD`)
++ A.类只能继承一个父类，但是可以实现多个接口
++ B.抽象类自身可以定义成员而接口不可以
++ C.抽象类和接口都不能被实例化(忽略匿名内部类)
++ D.一个类可以有多个父类和多个基接口
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3523963
+
++ A、java为单继承，多实现。可以实现多个接口。
++ B、接口允许定义成员，但必须是常量
++ C、抽象类和接口类的无法实例化，任何编译器中直接使用new会报错
++ D、同A，单继承，多实现
 
 ## 五、问答题

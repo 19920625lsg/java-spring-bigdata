@@ -170,4 +170,29 @@ Map接口中的对象是key、value的映射关系，key不允许重复
 + C.正确，ArrayList的新增和删除就是数组的新增和删除，LinkedList与链表一致。
 + D.正确，因为ArrayList空间的增长率为1.5倍，所以，最后很可能留下一部分空间是没有用到的，因此，会造成浪费的情况。对于LInkedList的话，由于每个节点都需要额外的指针，所以，你懂的。
 
+### 6.下面几个关于Java里queue的说法哪些是正确的（`AC`）？
++ A.LinkedBlockingQueue是一个可选有界队列，不允许null值
++ B.PriorityQueue，LinkedBlockingQueue都是线程不安全的
++ C.PriorityQueue是一个无界队列，不允许null值，入队和出队的时间复杂度是O（log(n)）
++ D.PriorityQueue，ConcurrentLinkedQueue都遵循FIFO原则 // 优先队列和普通队列不同地
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513990
+
++ A、LinkedBlockingQueue是一个基于节点链接的可选是否有界的阻塞队列，不允许null值
++ B、LinkedBlockingQueue是一个线程安全的阻塞队列，实现了先进先出等特性
++ C、PriorityQueue是一个***队列，不允许null值，入队和出队的时间复杂度是O（log(n)）
++ D、PriorityQueue是不同于先进先出队列的另一种队列。每次从队列中取出的是具有最高优先权的元素。ConcurrentLinkedQueue是一个基于链接节点的***线程安全队列，该队列的元素遵循FIFO原则。
+
+### 7.实现或继承了Collection接口的是（`BCE`）
++ A.Map
++ B.List
++ C.Vector
++ D.Iterator
++ E.Set
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3513828
+
+![集合的继承关系1](http://uploadfiles.nowcoder.com/images/20150904/458054_1441352361202_2B9A4774B9C5C489A9E9564854FFCD6C)
+![集合的继承关系2](http://uploadfiles.nowcoder.com/images/20150928/458054_1443399626006_AA40C8919CE65157D5F251E7622A75FB)
+
 ## 五、问答题
