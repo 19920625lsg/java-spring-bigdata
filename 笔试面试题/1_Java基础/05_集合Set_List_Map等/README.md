@@ -77,6 +77,38 @@ subset方法是求set的范围内的子集，两个true是表示是否包含端�
 最后附上java集合框架图。
 ![java集合框架图](https://uploadfiles.nowcoder.com/images/20160801/740942_1470042423855_86F5A9F9F791DD7EA7C96F158F0FEA87)
 
+### 5.下面有关java hashmap的说法错误的是？(`C`)
++ A.HashMap 的实例有两个参数影响其性能：“初始容量” 和 “加载因子”。
++ B.HashMap 的实现不是同步的，意味着它不是线程安全的
++ C.HashMap通过开放地址法解决哈希冲突
++ D.HashMap中的key-value都是存储在Entry数组中的
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3507828
+
+ hashmap采用拉链法解决冲突
+
+ 1. 开放定址法：线性探测再散列、二次探测再散列、再随机探测再散列；
+
+2. 再哈希法：换一种哈希函数；
+
+3. 链地址法 ：在数组中冲突元素后面拉一条链路，存储重复的元素；
+
+4. 建立一个公共溢出区：其实就是建立一个表，存放那些冲突的元素。
+
+什么时候会产生冲突
+
+HashMap中调用 hashCode() 方法来计算hashCode。
+![HashMap的原理](https://uploadfiles.nowcoder.com/images/20170326/9020120_1490497244985_63AB9B420F558D068D1E823264FC73C0)
+由于在Java中两个不同的对象可能有一样的hashCode,所以不同的键可能有一样hashCode，从而导致冲突的产升。  
+
+HashMap底层是 数组和链表 的结合体。底层是一个线性数组结构，数组中的每一项又是一个链表。当新建一个HashMap的时候，就会初始化一个数组。数组是 Entry[] 数组，静态内部类。 
+E ntry就是数组中的元素，每个 Map.Entry 其实就是一个key-value对，它持有一个指向下一个元素的引用 next ，这就构成了链表。所以 很明显是链地址法。
+具体过程：
+当我们往HashMap中put元素的时候：当程序试图将一个key-value对放入HashMap中时，
++ 1.程序首先根据该 key 的 hashCode() 返回值决定该 Entry 的存储位置；
++ 2.若Entry 的存储位置上为 null ，直接存储该对象；若不为空，两个 Entry 的 key 的 hashCode() 返回值相同，那它们的存储位置相同，
++ 3.循环遍历链表，如果这两个 Entry 的 key 通过 equals 比较返回 true，新添加 Entry 的 value 将覆盖集合中原有 Entry 的 value，但key不会覆盖；如果这两个 Entry 的 key 通过 equals 比较返回 false，新添加的 Entry 将与集合中原有 Entry 形成 Entry 链，而且新添加的 Entry 位于 Entry 链的头部
+
 ## 四、多选题
 ### 1.关于java集合下列说法不正确的有哪些（`ABD`）
 + A.HashSet 它是线程安全的，不允许存储相同的对象

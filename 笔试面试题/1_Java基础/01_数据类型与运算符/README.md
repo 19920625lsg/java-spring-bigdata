@@ -535,4 +535,15 @@ Long u=new Long(9);
 + D选项可以这样定义，D正确。
 + E选项中，byte的取值范围是-128—127。报出异常： cannot convert from int to byte.所以E选项错误。
 
+### 8.下面哪段代码会返回NullPointerException异常？(`AC`)
++ A.`if((s!=null)&(s.length()>0))`
++ B.`if((s!=null)&&(s.length()>0))`
++ C.`if((s==null)|(s.length()==0))`
++ D.`if((s==null)||(s.length()==0))`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3507882
+
++ |和&  :检测ture;不具备短路功能，会检查每一个条件，表达式中只要一个ture 就整体返回true
++ ||和&& :检测true;具备短路功能，一遇到true,就返回true;
+
 ## 五、问答题
