@@ -210,7 +210,16 @@ public void second(Value tmp,int i){
 现在指的是新的对象val，i值为15.
 当执行完毕second后，在first中在此输出v.i的时候，应为前面second中已经把该位置的i的值改为了20，所以输出的是20.
 至于疑惑v指向了val，其实只是名字的问题，在second中的v实践也是另外的一个变量，名字相同了而已，这个估计也是纠结的重点。
-简单的总结，不对希望可以提出来，谢谢！
+
+### 7.下列哪个选项是正确计算42度（角度）的余弦值？（`C`）
++ A.`double d=Math.cos(42)`
++ B.`double d=Math.cosine(42)`
++ C.`double d=Math.cos(Math.toRadians(42))`
++ D.`double d=Math.cos(Math.toDegrees(42))`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793721
+
+Math.cos为计算弧度的余弦值，Math.toRadians函数讲角度转换为弧度
 
 ## 四、多选题
 ### 1.已知
@@ -349,7 +358,68 @@ Double d = 42.0;
     System.out.println(c.equals(i+j));//true
     ```
 
+### 5.对于下面的代码，选项中那个会返回true?(`CDE`)
+```java
+Integer s=new Integer(9);
+Integer t=new Integer(9);
+Long u=new Long(9);
+```
 
++ A.`(s==u)`
++ B.`(s==t)`
++ C.`(s.equals(t))`
++ D.`(s.equals(9))`
++ E.`(s.equals(new Integer(9))`
 
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793853
+
+- int和int之间，用==比较，肯定为true。基本数据类型没有equals方法
+- int和Integer比较，Integer会自动拆箱，== 和 equals都肯定为true
+- int和new Integer比较，Integer会自动拆箱，调用intValue方法, 所以 == 和 equals都肯定为true
+- Integer和Integer比较的时候，由于直接赋值的话会进行自动的装箱。所以当值在[-128,127]中的时候，由于值缓存在IntegerCache中，那么当赋值在这个区间的时候，不会创建新的Integer对象，而是直接从缓存中获取已经创建好的Integer对象。而当大于这个区间的时候，会直接new Integer。
+  当Integer和Integer进行==比较的时候，在[-128,127]区间的时候，为true。不在这个区间，则为false
+  当Integer和Integer进行equals比较的时候，由于Integer的equals方法进行了重写，比较的是内容，所以为true
+- Integer和new Integer ： new Integer会创建对象，存储在堆中。而Integer在[-128,127]中，从缓存中取，否则会new Integer.
+  所以 Integer和new Integer 进行==比较的话，肯定为false ; Integer和new Integer 进行equals比较的话，肯定为true
+- new Integer和new Integer进行==比较的时候，肯定为false ; 进行equals比较的时候，肯定为true
+  原因是new的时候，会在堆中创建对象，分配的地址不同，==比较的是内存地址，所以肯定不同
+- 装箱过程是通过调用包装器的valueOf方法实现的
+  拆箱过程是通过调用包装器的xxxValue方法实现的（xxx表示对应的基本数据类型）
+- 总结：Byte、Short、Integer、Long这几个类的valueOf方法实现类似的。所以在[-128,127]区间内，==比较的时候，值总是相等的（指向的是同一对象），在这个区间外是不等的。
+  而Float和Double则不相等， Boolean的值总是相等的
+
+针对题目的解析：
++ A.`(s==u)` ，因为， s 是 Integer 类型， u 是 Long 类型，两个不同类型的引用不能进行 == 比较。
++ B.`(s==t)` ， s 是指向一个 9 的引用，而 t 也是一个指向 9 的引用，虽然都是指向 9 ，但却是指向不同的 9 ，即是两个不同的引用。因此 == 比较返回的是假。
++ C.`(s.equals(t))` ， Integer 的 equals 方法如下：
+    ```java
+    public boolean equals(Object obj) {
+        if (obj instanceof Integer) {
+            return value == ((Integer)obj).intValue();
+        }
+        return false ;
+    }
+    ```
+    是 Integer 的实例且 value 值也相等的情况下返回真，其他返回假。
+
+    在这里， s 和 t 都是 Integer 类型且值都为 9 ，因此结果为真。
+
++ D.`(s.equals(9))` , 在进行 equals 比较之前，会对 9 调用 Integer.valueOf 方法，进行自动装箱 , 由于 IntegerCache 中已经存在 9 ，所以，直接返回其引用，引用相同， equals 就自然相同了。所以结果为真。
++ E.`(s.equals( new Integer(9))` ，直接创建了一个新的 Integer 实例，但且值也为 9 ，所以，满足条件，返回真。
+
+### 6.在Java语言中，下列关于字符集编码（Character set encoding）和国际化（i18n）的问题，哪些是正确的？(`CD`)
++ A.每个中文字符占用2个字节，每个英文字符占用1个字节
++ B.假设数据库中的字符是以GBK编码的，那么显示数据库数据的网页也必须是GBK编码的。
++ C.Java的char类型，通常以UTF-16 Big Endian的方式保存一个字符。
++ D.实现国际化应用常用的手段是利用ResourceBundle类
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793733
+
++ A 显然是错误的，Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。
++ B 也是不正确的，不同的编码之间是可以转换的，通常流程如下：
+  将字符串S以其自身编码方式分解为字节数组，再将字节数组以你想要输出的编码方式重新编码为字符串。
+  例：String newUTF8Str = new String(oldGBKStr.getBytes("GBK"), "UTF8");
++ C 是正确的。Java虚拟机中通常使用UTF-16的方式保存一个字符
++ D 也是正确的。ResourceBundle能够依据Local的不同，选择性的读取与Local对应后缀的properties文件，以达到国际化的目的。
 
 ## 五、问答题

@@ -646,4 +646,30 @@ public class Base {
 + C：static final 可以表达在一起来修饰方法，表示是该方法是静态的不可重写的方法
 + D：private 修饰方法（这太常见的）表示私有方法，本类可以访问，外界不能访问
 
+### 11. 对于abstract声明的类，下面说法正确的是(`E`)
++ A.可以实例化
++ B.不可以被继承
++ C.子类为abstract
++ D.只能被继承
++ E.可以被抽象类继承
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3793963
+
++ A,抽象类不能实例化，因为有抽象方法未实现
++ B,可以被继承。派生类可以实现抽象方法
++ C.子类可以是抽象的，也可以非抽象的
++ D.只能被继承说法太肯定，也可以只用类名调用其静态方法
+    ```java
+    public abstract class FanLi {
+        public abstract void nouse();
+        public static void main(String[] args) {
+            FanLi.fun();
+        }
+        public static void fun() {
+            System.out.println("我是反例");
+        }
+    }
+    ```  
++ E.可以被抽象类继承，也可以被非抽象类继承
+
 ## 五、问答题
