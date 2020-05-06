@@ -75,6 +75,24 @@ jvm堆分为：新生代（一般是一个Eden区，两个Survivor区），老�
 年轻代5120m， Eden：Survivor=3，Survivor区大小=1024m（Survivor区有两个，即将年轻代分为5份，每个Survivor区占一份），总大小为2048m。
 -Xms初始堆大小即最小内存值为10240m
 
+### 6.下面有关java classloader说法错误的是?（`C`）
++ A.Java默认提供的三个ClassLoader是BootStrap ClassLoader，Extension ClassLoader，App ClassLoader
++ B.ClassLoader使用的是双亲委托模型来搜索类的
++ C.JVM在判定两个class是否相同时，只用判断类名相同即可，和类加载器无关
++ D.ClassLoader就是用来动态加载class文件到内存当中用的
+
+解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3595142
+
+JVM在判定两个class是否相同时，不仅要判断两个类名是否相同，而且要判断是否由同一个类加载器实例加载的。
+
+扩展：
+一个jvm中默认的classloader有Bootstrap ClassLoader、Extension ClassLoader、App ClassLoader，分别各司其职：
++ Bootstrap ClassLoader     负责加载java基础类，主要是 %JRE_HOME/lib/ 目录下的rt.jar、resources.jar、charsets.jar和class等
++ Extension ClassLoader      负责加载java扩展类，主要是 %JRE_HOME/lib/ext 目录下的jar和class
++ App ClassLoader           负责加载当前java应用的classpath中的所有类。
+classloader 加载类用的是全盘负责委托机制。 什么是双亲委派机制？当某个类加载器需要加载某个.class文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。
+所以，当我们自定义的classloader加载成功了 com.company.MyClass以后，MyClass里所有依赖的class都由这个classLoader来加载完成。
+
 ## 四、多选题
 ### 1.关于运行时常量池，下列哪个说法是正确的？(`BCD`)
 + 运行时常量池大小受栈区大小的影响

@@ -487,6 +487,26 @@ public class TestDemo{
 
 解析：通过实例化可以调用本类的私有属性，但是不能直接调用（system.out.println（conut）），因为主函数为静态函数，而属性为非静态。
 
+### 20.下面代码的输出是什么？（`A`）
++ A.null
++ B.sub
++ C.base
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3590511
+
+new Sub();在创造派生类的过程中首先创建基类对象，然后才能创建派生类。
+创建基类即默认调用Base()方法，在方法中调用callName()方法，由于派生类中存在此方法，则被调用的callName（）方法是派生类中的方法，此时派生类还未构造，所以变量baseName的值为null
+
+### 21.对文件名为Test.java的java代码描述正确的是(`C`)
++ A.输出：0000
++ B.输出：123
++ C.编译报错
++ D.输出：No name
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3528574
+
+选C，父类没有无参的构造函数，所以子类需要在自己的构造函数中显式调用父类的构造函数，添加super("nm");否则报错
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
@@ -779,5 +799,72 @@ public class Base {
 + A.java只是单继承，但是可以实现多个接口，继承的耦合性太强，java推荐高内聚低耦合的设计思路，不推荐使用继承。在用继承的情况下，如果还必须要继承另外的接口会很麻烦，尽量用接口，这样在你必须要用到继承的时候就可以用了。
 + B.声明使用的意思是像：Object s = new String();这里的Object类就被声明使用了，抽象类和接口都可以被声明使用
 + C.抽象类和接口都不能被实例化。接口没有构造方法，不能被实例化，但是抽象方法可以有构造方法，不过不是用来实例化对象的，使用来初始化的。
+
+### 13.下列说法错误的有（`ACD` ）
++ A.在类方法中可用this来调用本类的类方法
++ B.在类方法中调用本类的类方法时可直接调用
++ C.在类方法中只能调用本类中的类方法
++ D.在类方法中绝对不能调用实例方法
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3564017
+
+首先：
+成员方法又称为实例方法
+静态方法又称为类方法
+其次：
++ a，静态方法中没有this指针
++ c，可以通过类名作用域的方式调用Class::fun();
++ d，太绝对化了，在类中申请一个类对象或者参数传递一个对象或者指针都可以调用;
+
+### 14.Java类Demo中存在方法func0、func1、func2、func3和func4，请问该方法中，哪些是不合法的定义？(`AD`)
+```java
+public class Demo{
+　　float func0()
+　　{
+　　　　byte i=1;
+　　　　return i;
+　　}
+　　float func1()
+　　{
+　　　　int i=1;
+　　　　return;
+　　}
+　　float func2()
+　　{
+　　　　short i=2;
+　　　　return i;
+　　}
+　　float func3()
+　　{
+　　　　long i=3;
+　　　　return i;
+　　}
+　　float func4()
+　　{
+　　　　double i=4;
+　　　　return i;
+　　}
+}
+```
++ A.func1
++ B.func2
++ C.func3
++ D.func4
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3528518
+
+这道题考的是数据类型转换问题。由大到小需要强制转换，由小到大不需要。
++ A：return;   没有返回值，错误
++ B：short → float 无须强制转换，正确
++ C：long → float  无须强制转换（这个最选项容易出错），正确。
+
+float占4个字节为什么比long占8个字节大呢，因为底层的实现方式不同。
+浮点数的32位并不是简单直接表示大小，而是按照一定标准分配的。
+第1位，符号位，即S
+接下来8位，指数域，即E。
+剩下23位，小数域，即M，取值范围为[1 ,2 ) 或[0 , 1)
+然后按照公式： V=(-1)^s * M * 2^E
+也就是说浮点数在内存中的32位不是简单地转换为十进制，而是通过公式来计算而来，通过这个公式虽然，只有4个字节，但浮点数最大值要比长整型的范围要大
++ D：double → float 没有强制转换，错误。
 
 ## 五、问答题

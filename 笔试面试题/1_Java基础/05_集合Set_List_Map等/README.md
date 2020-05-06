@@ -62,6 +62,21 @@ subset方法是求set的范围内的子集，两个true是表示是否包含端�
   ```
   再查其方法api，也没见到说SimpleDateFormat有实现同步的方法。（一般要是一个类是线程同步的，第一句话应该就会说了）
 
+### 4.下列关于容器集合类的说法正确的是？（`C`）
++ A.LinkedList继承自List
++ B.AbstractSet继承自Set
++ C.HashSet继承自AbstractSet
++ D.WeakMap继承自HashMap
+
+> 解答：https://www.nowcoder.com/questionTerminal/f32600cdc2ad413082ea503f9496cadd
+
++ A.LinkedList是继承自AbstractSequentialList（抽象类，实现了List接口）的，并且实现了List接口。所以A错误。
++ B.AbstractSet是实现了Set接口的，本身是一个抽象类。继承自AbstractCollection（抽象类，实现了Collection接口）。所以B错误。
++ C.HashSet是继承自AbstractSet，实现了Set接口。所以C正确。
++ D.WeakMap不存在于java集合框架的。只有一个叫做WeakHashMap（继承自AbstractMap）。
+最后附上java集合框架图。
+![java集合框架图](https://uploadfiles.nowcoder.com/images/20160801/740942_1470042423855_86F5A9F9F791DD7EA7C96F158F0FEA87)
+
 ## 四、多选题
 ### 1.关于java集合下列说法不正确的有哪些（`ABD`）
 + A.HashSet 它是线程安全的，不允许存储相同的对象
@@ -141,5 +156,18 @@ Map接口中的对象是key、value的映射关系，key不允许重复
 + 4、两个遍历方式的内部实现上不同：Hashtable、HashMap都使用了 Iterator。而由于历史原因，Hashtable还使用了Enumeration的方式 。
 + 5、哈希值的使用不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值。
 + 6、Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩容的方式。HashTable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数 
+
+### 5.ArrayLists和LinkedList的区别，下述说法正确的有？(`ABCD`)
++ A.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。
++ B.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。
++ C.对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据。
++ D.ArrayList的空间浪费主要体现在在list列表的结尾预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗相当的空间。
+
+> 解答： https://www.nowcoder.com/profile/934336/myFollowings/detail/3524990
+
++ A.正确，这里的所谓动态数组并不是那个“ 有多少元素就申请多少空间 ”的意思，通过查看源码，可以发现，这个动态数组是这样实现的，如果没指定数组大小，则申请默认大小为10的数组，当元素个数增加，数组无法存储时，系统会另个申请一个长度为当前长度1.5倍的数组，然后，把之前的数据拷贝到新建的数组。
++ B.正确，ArrayList是数组，所以，直接定位到相应位置取元素，LinkedLIst是链表，所以需要从前往后遍历。
++ C.正确，ArrayList的新增和删除就是数组的新增和删除，LinkedList与链表一致。
++ D.正确，因为ArrayList空间的增长率为1.5倍，所以，最后很可能留下一部分空间是没有用到的，因此，会造成浪费的情况。对于LInkedList的话，由于每个节点都需要额外的指针，所以，你懂的。
 
 ## 五、问答题

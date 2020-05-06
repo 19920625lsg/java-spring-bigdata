@@ -18,6 +18,17 @@
 + C.当输入过程中意外到达文件或流的末尾时，抛出EOFException异常,正常情况下读取到文件末尾时，返回一个特殊值表示文件读取完成，例如read()返回-1表示文件读取完成。
 + D.上面A选项已经说了，不论是文本文件还是二进制文件，在计算机中都是以二进制形式存储的，所以都当做二进制文件读取
 
+### 2.BufferedReader的父类是以下哪个？(`D`)
++ A.FilterReader
++ B.InputStreamReader
++ C.PipedReader
++ D.Reader
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3590635
+
+![IO相关的类的继承关系图](http://uploadfiles.nowcoder.com/images/20150328/138512_1427527478646_1.png)
+
+
 ## 四、多选题
 ### 1.character流和byte流的区别不包括（`ABD`）
 + A.每次读入的字节数不同
