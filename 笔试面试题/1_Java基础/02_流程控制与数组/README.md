@@ -33,4 +33,13 @@
 + C.C中的数组声明和初始化的格式不对
 + D.数组的大小一旦指定，就不可以进行改变
 
+### 3.在java7中，下列不能做switch()的参数类型是？（`D`）
++ A.int型
++ B.枚举类型
++ C.字符串
++ D.浮点型
+
+> 解答：switch语句后的控制表达式只能是short、char、int、long整数类型和枚举类型，不能是float，double和boolean类型。String类型是java7开始支持。
+
+switch语句后的控制表达式只能是short、char、int、long整数类型和枚举类型，不能是float，double和boolean类型。String类型是java7开始支持。即switch支持int及以下（char， short， byte）、String、Enum
 ## 五、问答题

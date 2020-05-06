@@ -1071,4 +1071,41 @@ float占4个字节为什么比long占8个字节大呢，因为底层的实现方
   + 5.接口可以实现多继承
   + 6.接口中定义的方法都需要有实现类来实现，如果实现类不能实现接口中的所有方法
   + 7.则实现类定义为抽象类
+
+### 19.在Java中下面Class的声明哪些是错误的？（`ABC`）
++ A.
+    ```java
+    public abstract final class Test {
+        abstract void method();
+    }
+    ```
++ B.
+    ```java
+    public abstract class Test {
+        abstract final void method();
+    }
+    ```
++ C.
+    ```java
+    public abstract class Test {
+        abstract void method() {
+        }
+    }
+    ```
++ D.
+    ```java
+    public class Test {
+        final void method() {
+
+        }
+    }
+    ```
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3507534
+
++ A、final修饰的类为终态类，不能被继承，而 抽象类是必须被继承的才有其意义的，因此，final是不能用来修饰抽象类的。
++ B、final修饰的方法为终态方法，不能被重写。而继承抽象类，必须重写其方法。
++ C、抽象方法是仅声明，并不做实现的方法。
+
+
 ## 五、问答题
