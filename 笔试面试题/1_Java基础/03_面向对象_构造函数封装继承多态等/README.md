@@ -463,7 +463,29 @@ class HasStatic{
   + 4.接口中没有构造方法，也不能实例化接口的对象。（所以接口不能继承类）
   + 5.接口可以实现多继承
   + 6.接口中定义的方法都需要有实现类来实现，如果实现类不能实现接口中的所有方法则实现类定义为抽象类。
-  + 7，接口可以继承接口，用extends
+  + 7.接口可以继承接口，用extends
+
+### 19.以下代码在编译和运行过程中会出现什么情况?(`A`)
+```java
+public class TestDemo{
+    private int count;
+    public static void main(String[] args) {
+        TestDemo test=new TestDemo(88);
+        System.out.println(test.count);
+    }
+     TestDemo(int a) {
+         count=a;
+    }
+}
+```
++ A.编译运行通过，输出结果是88
++ B.编译时错误，count变量定义的是私有变量
++ C.编译时错误，System.out.println方法被调用时test没有被初始化
++ D.编译和执行时没有输出结果
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3598067
+
+解析：通过实例化可以调用本类的私有属性，但是不能直接调用（system.out.println（conut）），因为主函数为静态函数，而属性为非静态。
 
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
@@ -745,5 +767,17 @@ public class Base {
     }
     ```  
 + E.可以被抽象类继承，也可以被非抽象类继承
+
+### 12.关于抽象类与接口，下列说法正确的有？（`AC`）
++ A.优先选用接口，尽量少用抽象类
++ B.抽象类可以被声明使用，接口不可以被声明使用
++ C.抽象类和接口都不能被实例化。
++ D.以上说法都不对
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3598070
+
++ A.java只是单继承，但是可以实现多个接口，继承的耦合性太强，java推荐高内聚低耦合的设计思路，不推荐使用继承。在用继承的情况下，如果还必须要继承另外的接口会很麻烦，尽量用接口，这样在你必须要用到继承的时候就可以用了。
++ B.声明使用的意思是像：Object s = new String();这里的Object类就被声明使用了，抽象类和接口都可以被声明使用
++ C.抽象类和接口都不能被实例化。接口没有构造方法，不能被实例化，但是抽象方法可以有构造方法，不过不是用来实例化对象的，使用来初始化的。
 
 ## 五、问答题
