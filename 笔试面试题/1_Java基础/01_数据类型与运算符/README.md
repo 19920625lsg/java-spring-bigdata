@@ -47,6 +47,16 @@ D:`(int)i`不是 `int(i)`
 + String对象不可变的含义：举个例子：String str = "aa"; str = "aa"+"bb"; 此时str的值为"aabb"，但是"aabb"不是在开始的字符串"aa"后面直接连接的"bb"，而是又新生成了字符串"aabb"，字符串"aa"一旦被初始化，那么它的值不可能再改变了。 
 + StringBuffer对象可变的含义： StringBuffer strb = StringBuffer("aa"); strb.append("bb"); 此时的strb的值也为"aabb"，但是"aabb"是直接在开始的字符串"aa"后面连接的“bb”，并没有生成新的字符串。
 
+### 5.以下代码将打印出（`C`）
++ A.`com.jd`
++ B.`com/jd/MyClass.class`
++ C.`///////MyClass.class`
++ D.`com.jd.MyClass`
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3507281
+
+C.由于replaceAll方法的第一个参数是一个正则表达式，而"."在正则表达式中表示任何字符，所以会把前面字符串的所有字符都替换成"/"。如果想替换的只是"."，那么久要写成"\\.".
+
 ## 三、单选题
 
 ### 1.以下哪一个不是赋值符号？（`C`）
@@ -320,6 +330,33 @@ public static void main(String a[]){
 主要考察各个变量类型的默认值
 
 ![常用变量类型的默认值](https://uploadfiles.nowcoder.com/images/20180713/3807435_1531450430478_A1E3D6CDC367DED01B519240FF9FA63F)
+
+### 12.有如下一段代码，请选择其运行结果（`C`）
+```java
+public class StringDemo{
+  private static final String MESSAGE="taobao";
+  public static void main(String [] args) {
+    String a ="tao"+"bao";
+    String b="tao";
+    String c="bao";
+    System.out.println(a==MESSAGE);
+    System.out.println((b+c)==MESSAGE);
+  }
+}
+```
++ A.true true
++ B.false false
++ C.true false
++ D.false true
+
+> 解答：
+
+要注意两个问题：
++ 1，字符串在java中存储在字符串常量区中
++ 2，==判断的是对象引用是否是同一个引用，判断字符串相等要用equals方法
+
+首先判断a==MESSAGE 同一份字符串常量在内存中只有一份，因此是同一地址，返回true  
+再次比较(b+c)==MESSAGE 这相当于 new String(b+c)==MESSAGE 这里new了一个String对象，所以返回false
 
 ## 四、多选题
 ### 1.已知

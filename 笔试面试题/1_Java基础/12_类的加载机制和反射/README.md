@@ -78,5 +78,22 @@ object. setI(2);
 + E.反射会动态创建额外的对象，比如每个成员方法只有一个Method对象作为root，他不胡直接暴露给用户。调用时会返回一个Method的包装类
 + F.反射带来的效率问题主要是动态解析类，JVM没法对反射代码优化
 
+### 2.下列说法正确的有（ ）
++ A.环境变量可在编译source code时指定
++ B.在编译程序时，所能指定的环境变量不包括class path
++ C.javac一次可同时编译数个Java源文件
++ D.javac.exe能指定编译结果要置于哪个目录（directory）
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/3507444
+
+C选项：使用 javac *.java，可编译当前目录下的所有java文件
+
+### 3.JAVA反射机制主要提供了以下哪些功能？(`ABCD`)
++ A.在运行时判断一个对象所属的类
++ B.在运行时构造一个类的对象
++ C.在运行时判断一个类所具有的成员变量和方法
++ D.在运行时调用一个对象的方法
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/2287407
 
 ## 五、问答题

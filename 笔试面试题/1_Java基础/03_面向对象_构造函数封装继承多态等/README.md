@@ -648,6 +648,31 @@ public Derived(String s){
 }
 ```
 
+### 25.下面代码的执行结果是：(`C`)
+```java
+package test;
+import java.util.Date; 
+public class SuperTest extends Date{ 
+    private static final long serialVersionUID = 1L; 
+    private void test(){ 
+       System.out.println(super.getClass().getName()); 
+    } 
+      
+    public static void main(String[]args){ 
+       new SuperTest().test(); 
+    } 
+}
+```
++ A.SuperTest
++ B.SuperTest.class
++ C.`test.SuperTest` // 这里的test是包名
++ D.`test.SuperTest.class`
+
+> 解答：
+
+TestSuper和Date的getClass都没有重写，他们都是调用Object的getClass，而Object的getClass作用是返回的是运行时的类的名字。这个运行时的类就是当前类，所以`super.getClass().getName()`返回的是test.SuperTest，与Date类无关.
+要返回Date类的名字需要写`super.getClass().getSuperclass()`
+
 ## 四、多选题
 ### 1.以下代码可以使用的修饰符是：（`ACD`）
 + A.final
@@ -1106,6 +1131,19 @@ float占4个字节为什么比long占8个字节大呢，因为底层的实现方
 + A、final修饰的类为终态类，不能被继承，而 抽象类是必须被继承的才有其意义的，因此，final是不能用来修饰抽象类的。
 + B、final修饰的方法为终态方法，不能被重写。而继承抽象类，必须重写其方法。
 + C、抽象方法是仅声明，并不做实现的方法。
+
+### 20.以下关于final关键字说法错误的是（`AC`）
++ A.final是java中的修饰符，可以修饰类、接口、抽象类、方法和属性
++ B.final修饰的类肯定不能被继承
++ C.final修饰的方法不能被重载
++ D.final修饰的变量不允许被再次赋值
+
+> 解答：https://www.nowcoder.com/profile/934336/myFollowings/detail/993054
+
++ final修饰类、方法、属性！不能修饰抽象类，因为抽象类一般都是需要被继承的，final修饰后就不能继承了；final也不能修饰接口，接口可以只能被public&abstract修饰
++ final修饰的方法不能被重写而不是重载！ 
++ final修饰属性，此属性就是一个常量，不能被再次赋值！ 
+
 
 
 ## 五、问答题
