@@ -80,6 +80,12 @@ C.混合赋值运算符的使用
 + 但是没有`<<<`运算符
 
 ### 4.在jdk1.5之后，下列 java 程序输出结果为(`B`)
+```java
+int i=0;
+Integer j = new Integer(0);
+System.out.println(i==j);
+System.out.println(j.equals(i));
+```
 + A.true,false
 + B.true,true
 + C.false,true
