@@ -177,6 +177,11 @@ public class Test
          例如：Math.round(-4.6) = -5
 
 ### 5.下面代码的执行结果是：`A`
+```java
+double d1=-0.5;
+System.out.println("Ceil d1="+Math.ceil(d1));
+System.out.println("floor d1="+Math.floor(d1));
+```
 + A. Ceil d1=-0.0
 floor d1=-1.0
 + B.Ceil d1=0.0
