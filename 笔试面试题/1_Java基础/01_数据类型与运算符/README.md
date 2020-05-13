@@ -48,6 +48,12 @@ D:`(int)i`不是 `int(i)`
 + StringBuffer对象可变的含义： StringBuffer strb = StringBuffer("aa"); strb.append("bb"); 此时的strb的值也为"aabb"，但是"aabb"是直接在开始的字符串"aa"后面连接的“bb”，并没有生成新的字符串。
 
 ### 5.以下代码将打印出（`C`）
+```java
+public static void main (String[] args) { 
+    String classFile = "com.jd.". replaceAll(".", "/") + "MyClass.class";
+    System.out.println(classFile);
+}
+```
 + A.`com.jd`
 + B.`com/jd/MyClass.class`
 + C.`///////MyClass.class`
