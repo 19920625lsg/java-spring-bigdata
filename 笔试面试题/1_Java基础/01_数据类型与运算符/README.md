@@ -135,6 +135,18 @@ public class Test {
 java的String底层是char数组，它的length()返回数组大小，而unicode中一个汉字是可以用一个char表示的。不管中文字符还是英文字符在Java中都是一个char，在C和C++是不一样地
 
 ### 3.下面代码在main()方法中第八行后可以正常使用的是（`AD`）
+```java
+public class Test
+{
+    private int a=10;
+    int b=20;
+    static int c=1;
+    public static void main(String arg[])
+    {
+        Test t = new Test(); // 第8行
+    }
+ }
+```
 + A.t.a
 + B.this.c
 + C.Test.b
