@@ -281,6 +281,15 @@ System.out.println(str1==str2);
     如果语句改为:"he"+"llo"这样就是true了
 
 ### 9.下列Java代码中的变量a、b、c分别在内存的____存储区存放。(`C`)
+```java
+class A {
+    private String a = “aa”;
+    public boolean methodB() {
+        String b = “bb”;
+        final String c = “cc”;
+    }
+}
+```
 + A.堆区、堆区、堆区
 + B.堆区、栈区、堆区
 + C.堆区、栈区、栈区
